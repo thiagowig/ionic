@@ -1,5 +1,30 @@
 <ion-view view-title="Configuração">
   <ion-content>
-    <h1>Configuração</h1>
+
+      <label class="item item-input item-select">
+        <div class="input-label">Forma de pagamento</div>
+        <select ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id" ng-model="paymentMethod" required>
+          <<option value=""></option>
+        </select>
+      </label>
+      
+
+      <form ng-submit="save(paymentMethod)">
+        <div class="list">
+          
+          <label class="item item-input">
+            <span class="input-label">Taxa da empresa</span>
+            <input type="number" ng-model="paymentMethod.enterpriseTax">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Taxa da maquina</span>
+            <input type="number" ng-model="paymentMethod.machineTax">
+          </label>
+          <label class="item">
+            <button class="button button-block button-balanced" type="submit">Salvar</button>
+          </label>
+        </div>
+      </form>
+
   </ion-content>
 </ion-view>

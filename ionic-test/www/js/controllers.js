@@ -61,5 +61,31 @@ angular.module('starter.controllers', [])
 .controller('PaymentController', function($scope, $stateParams) {
 })
 
-.controller('ConfigController', function($scope, $stateParams) {
+.controller('ConfigController', function($scope, $stateParams, $ionicPopup) {
+  $scope.paymentMethods = [
+    {id: 1, name: "Dinheiro", enterpriseTax: 55, machineTax: 0},
+    {id: 2, name: "Debito", enterpriseTax: 55, machineTax: 2},
+    {id: 3, name: "Credito", enterpriseTax: 55, machineTax: 4}
+  ];
+
+  $scope.selectedPaymentMethod = $scope.paymentMethods[0];
+
+  $scope.save = function(paymentMethod) {
+    console.log(paymentMethod);
+
+    if (paymentMethod) {
+      $ionicPopup.alert({
+        title: '<font color="green"><b>Sucesso</b></font>',
+        template: 'As configurações foram salvas'
+      });
+
+    } else {
+      $ionicPopup.alert({
+        title: '<font color="red"><b>Erro</b></font>',
+        template: 'Favor selecionar uma forma de pagamento'
+      });
+    }
+
+    
+  }
 });
