@@ -91,11 +91,6 @@ angular.module('starter.controllers', [])
         var updateValues = [paymentMethod.clinicTax, paymentMethod.machineTax, paymentMethod.id];
 
         $cordovaSQLite.execute(db, updateQuery, updateValues).then(function (result) {
-          $scope.paymentMethods.forEach(function (element, index) {
-            if (element.id === paymentMethod.id) {
-              $scope.paymentMethods[index] = paymentMethod;
-            }
-          });
 
           $ionicPopup.alert({
             title: '<font color="green"><b>Sucesso</b></font>',
