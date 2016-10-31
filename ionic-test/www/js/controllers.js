@@ -61,22 +61,40 @@ angular.module('starter.controllers', [])
 .controller('PaymentController', function($scope, $stateParams) {
 })
 
-.controller('ConfigController', function($scope, $stateParams, $ionicPopup) {
-  $scope.paymentMethods = [
-    {id: 1, name: "Dinheiro", enterpriseTax: 55, machineTax: 0},
-    {id: 2, name: "Debito", enterpriseTax: 55, machineTax: 2},
-    {id: 3, name: "Credito", enterpriseTax: 55, machineTax: 4}
-  ];
+.controller('ConfigController', function($scope, $stateParams, $ionicPopup, $cordovaSQLite) {
+  
+  var findPaymenMethods = function() {
+    var selectQuery = "SELECT * FROM paymentMethod;"
 
-  $scope.selectedPaymentMethod = $scope.paymentMethods[0];
+    $cordovaSQLite.execute(db, selectQuery).then(function(result) {
+      $scope.paymentMethods = [];
+
+      for (var i = 0; i < result.rows.length; i++) {
+        $scope.paymentMethods.push(result.rows.item(i));
+      }
+    });
+  };
 
   $scope.save = function(paymentMethod) {
     console.log(paymentMethod);
 
     if (paymentMethod) {
-      $ionicPopup.alert({
-        title: '<font color="green"><b>Sucesso</b></font>',
-        template: 'As configurações foram salvas'
+      var updateQuery = 'UPDATE paymentMethod SET clinicTax = ?, machineTax = ? WHERE id = ?';
+      var updateValues = [paymentMethod.clinicTax, paymentMethod.machineTax, paymentMethod.id];
+
+      $cordovaSQLite.execute(db, updateQuery, updateValues).then(function(result) {
+        findPaymenMethods();
+        
+        $ionicPopup.alert({
+          title: '<font color="green"><b>Sucesso</b></font>',
+          template: 'As configurações foram salvas'
+        });
+
+      }, function(error) {
+        $ionicPopup.alert({
+          title: '<font color="red"><b>Erro</b></font>',
+          template: 'Ocorreu um erro ao salvar: ' + error
+        });
       });
 
     } else {
@@ -85,7 +103,7 @@ angular.module('starter.controllers', [])
         template: 'Favor selecionar uma forma de pagamento'
       });
     }
-
-    
   }
+
+  findPaymenMethods();
 });
