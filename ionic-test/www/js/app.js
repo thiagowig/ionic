@@ -24,6 +24,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     }
 
     db = $cordovaSQLite.openDB({name: 'my.db', iosDatabaseLocation:'default'});
+
+    ############## NORMALIAR ESTRUTURA
+
     $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS paymentMethod (id INTEGER PRIMARY KEY, name TEXT, clinicTax NUMBER, machineTax NUMBER)')
       .then(function(result) {
 

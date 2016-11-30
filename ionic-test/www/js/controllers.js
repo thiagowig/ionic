@@ -75,15 +75,13 @@ angular.module('starter.controllers', [])
       });
     };
 
-    $scope.changePaymentMethod = function(paymentMethodId) {
-      var selectQuery = "SELECT * FROM paymentMethod WHERE id = ?";
-
-      $cordovaSQLite.execute(db, selectQuery, [paymentMethodId]).then(function (result) {
-        $scope.selectedPaymentMethod = result.rows.item(0);
-      });
+    $scope.changePaymentMethod = function (index) {
+      $scope.paymentMethod = $scope.paymentMethods[index];
     };
 
-    $scope.save = function (paymentMethod) {
+    $scope.save = function (index) {
+      var paymentMethod = $scope.paymentMethods[index];
+
       console.log(paymentMethod);
 
       if (paymentMethod) {
@@ -110,7 +108,7 @@ angular.module('starter.controllers', [])
           template: 'Favor selecionar uma forma de pagamento'
         });
       }
-    }
+    };
 
     findPaymenMethods();
   });

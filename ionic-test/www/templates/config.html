@@ -1,30 +1,28 @@
 <ion-view view-title="Configuração">
   <ion-content>
 
-    <form ng-submit="save(selectedPaymentMethod)">
+    <label class="item item-input item-select">
+        <div class="input-label">Forma de pagamento</div>
+        <select ng-change="changePaymentMethod(paymentMethod.id)" 
+                ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id" 
+                ng-model="paymentMethod" required>
+          <option value=""></option>
+        </select>
+      </label>
 
-      <label class="item item-input item-select">
-          <div class="input-label">Forma de pagamento</div>
-          <select ng-change="changePaymentMethod(paymentMethod.id)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id" ng-model="paymentMethod" required>
-            <option value=""></option>
-          </select>
+    <div class="list">
+      <label class="item item-input">
+          <span class="input-label">Taxa da cliníca</span>
+          <input type="number" ng-maxlength="3" ng-model="paymentMethod.clinicTax">
         </label>
-
-      <div class="list">
-        <label class="item item-input">
-            <span class="input-label">Taxa da cliníca</span>
-            <input type="number" ng-maxlength="3" ng-model="selectedPaymentMethod.clinicTax">
-          </label>
-        <label class="item item-input">
-            <span class="input-label">Taxa da maquina</span>
-            <input type="number" ng-maxlength="3" ng-model="selectedPaymentMethod.machineTax">
-          </label>
-        <label class="item">
-            <button class="button button-block button-balanced" type="submit">Salvar</button>
-          </label>
-      </div>
-
-    </form>
+      <label class="item item-input">
+          <span class="input-label">Taxa da maquina</span>
+          <input type="number" ng-maxlength="3" ng-model="paymentMethod.machineTax">
+        </label>
+      <label class="item">
+          <button class="button button-block button-balanced" ng-click="save(paymentMethod)">Salvar</button>
+        </label>
+    </div>
 
   </ion-content>
 </ion-view>
