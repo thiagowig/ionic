@@ -75,18 +75,27 @@ angular.module('starter.controllers', [])
       });
     };
 
-    $scope.changePaymentMethod = function (index) {
-      $scope.paymentMethod = $scope.paymentMethods[index];
+    $scope.changePaymentMethod = function (idPaymentMethod) {
+      var query = 'SELECT * FROM paymentMethodConfig WHERE idPaymentMethod = ?';
+      var params = [idPaymentMethod];
+
+      $cordovaSQLite.execute(db, query, params).then(function (result) {
+        $scope.paymentMethodConfig = result.rows.item(0);
+
+      }, function (error) {
+        $ionicPopup.alert({
+          title: '<font color="red"><b>Erro</b></font>',
+          template: 'Ocorreu um erro ao buscar a forma de pagamento: ' + error
+        });
+      });
     };
 
-    $scope.save = function (index) {
-      var paymentMethod = $scope.paymentMethods[index];
+    $scope.save = function (paymentMethodConfig) {
+      console.log(paymentMethodConfig);
 
-      console.log(paymentMethod);
-
-      if (paymentMethod) {
-        var updateQuery = 'UPDATE paymentMethod SET clinicTax = ?, machineTax = ? WHERE id = ?';
-        var updateValues = [paymentMethod.clinicTax, paymentMethod.machineTax, paymentMethod.id];
+      if (paymentMethodConfig) {
+        var updateQuery = 'UPDATE paymentMethodConfig SET clinicTax = ?, machineTax = ? WHERE id = ?';
+        var updateValues = [paymentMethodConfig.clinicTax, paymentMethodConfig.machineTax, paymentMethodConfig.id];
 
         $cordovaSQLite.execute(db, updateQuery, updateValues).then(function (result) {
 
