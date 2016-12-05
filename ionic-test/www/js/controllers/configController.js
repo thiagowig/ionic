@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-    .controller('ConfigController', function ($scope, $stateParams, $ionicPopup, $cordovaSQLite, PaymentMethodService) {
+    .controller('ConfigController', function ($scope, $ionicPopup, PaymentMethodService) {
 
         var findPaymenMethods = function () {
             PaymentMethodService.findAll(function(result) {
@@ -13,38 +13,17 @@ angular.module('starter.controllers')
         };
 
         $scope.changePaymentMethod = function (idPaymentMethod) {
-            var query = 'SELECT * FROM paymentMethodConfig WHERE idPaymentMethod = ?';
-            var params = [idPaymentMethod];
-
-            $cordovaSQLite.execute(db, query, params).then(function (result) {
+            PaymentMethodService.findConfigByPaymentMethod(idPaymentMethod, function(result) {
                 $scope.paymentMethodConfig = result.rows.item(0);
-
-            }, function (error) {
-                $ionicPopup.alert({
-                    title: '<font color="red"><b>Erro</b></font>',
-                    template: 'Ocorreu um erro ao buscar a forma de pagamento: ' + error
-                });
             });
         };
 
         $scope.save = function (paymentMethodConfig) {
-            console.log(paymentMethodConfig);
-
             if (paymentMethodConfig) {
-                var updateQuery = 'UPDATE paymentMethodConfig SET clinicTax = ?, machineTax = ? WHERE id = ?';
-                var updateValues = [paymentMethodConfig.clinicTax, paymentMethodConfig.machineTax, paymentMethodConfig.id];
-
-                $cordovaSQLite.execute(db, updateQuery, updateValues).then(function (result) {
-
+                PaymentMethodService.updateConfig(paymentMethodConfig, function(result) {
                     $ionicPopup.alert({
                         title: '<font color="green"><b>Sucesso</b></font>',
                         template: 'As configurações foram salvas'
-                    });
-
-                }, function (error) {
-                    $ionicPopup.alert({
-                        title: '<font color="red"><b>Erro</b></font>',
-                        template: 'Ocorreu um erro ao salvar: ' + error
                     });
                 });
 

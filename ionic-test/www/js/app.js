@@ -73,12 +73,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'AppCtrl'
       })
 
-      .state('app.new', {
-        url: '/new',
+      .state('app.attendance', {
+        url: '/attendance',
         views: {
           'menuContent': {
-            templateUrl: 'templates/new.html',
-            controller: 'NewController'
+            templateUrl: 'templates/attendance.html',
+            controller: 'AttendanceController'
           }
         }
       })
