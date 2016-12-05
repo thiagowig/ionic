@@ -116,5 +116,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $urlRouterProvider.otherwise('/app/payment');
   });
 
+angular.module('starter.controllers', []);
 
 angular.module('starter.services', []);
