@@ -1,17 +1,15 @@
 angular.module('starter.controllers')
 
-    .controller('ConfigController', function ($scope, $stateParams, $ionicPopup, $cordovaSQLite) {
+    .controller('ConfigController', function ($scope, $stateParams, $ionicPopup, $cordovaSQLite, PaymentMethodService) {
 
         var findPaymenMethods = function () {
-            var selectQuery = "SELECT * FROM paymentMethod"
-
-            $cordovaSQLite.execute(db, selectQuery).then(function (result) {
+            PaymentMethodService.findAll(function(result) {
                 $scope.paymentMethods = [];
 
                 for (var i = 0; i < result.rows.length; i++) {
                     $scope.paymentMethods.push(result.rows.item(i));
                 }
-            });
+            })
         };
 
         $scope.changePaymentMethod = function (idPaymentMethod) {
