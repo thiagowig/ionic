@@ -28,6 +28,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS paymentMethod (id INTEGER PRIMARY KEY, name TEXT)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS paymentMethodConfig (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER, clinicTax NUMBER, machineTax NUMBER, FOREIGN KEY(idPaymentMethod) REFERENCES paymentMethod(id)) ');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER, patient TEXT, attendanceDate LONG, expectedPaymentDate LONG, paymentDate LONG, fullValue REAL, receiveValue REAL, obs TEXT)');
 
         tx.executeSql('SELECT * FROM paymentMethod', [], function (tx, res) {
           if (res.rows.length == 0) {
