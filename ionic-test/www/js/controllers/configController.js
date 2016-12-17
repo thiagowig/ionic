@@ -3,24 +3,20 @@ angular.module('starter.controllers')
     .controller('ConfigController', function ($scope, $ionicPopup, PaymentMethodService) {
 
         var findPaymenMethods = function () {
-            PaymentMethodService.findAll(function(result) {
-                $scope.paymentMethods = [];
-
-                for (var i = 0; i < result.rows.length; i++) {
-                    $scope.paymentMethods.push(result.rows.item(i));
-                }
+            PaymentMethodService.findAll(function (result) {
+                $scope.paymentMethods = result;
             })
         };
 
         $scope.changePaymentMethod = function (idPaymentMethod) {
-            PaymentMethodService.findConfigByPaymentMethod(idPaymentMethod, function(result) {
+            PaymentMethodService.findConfigByPaymentMethod(idPaymentMethod, function (result) {
                 $scope.paymentMethodConfig = result.rows.item(0);
             });
         };
 
         $scope.save = function (paymentMethodConfig) {
             if (paymentMethodConfig) {
-                PaymentMethodService.updateConfig(paymentMethodConfig, function(result) {
+                PaymentMethodService.updateConfig(paymentMethodConfig, function (result) {
                     $ionicPopup.alert({
                         title: '<font color="green"><b>Sucesso</b></font>',
                         template: 'As configurações foram salvas'

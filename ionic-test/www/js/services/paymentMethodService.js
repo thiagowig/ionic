@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-    .service('PaymentMethodService', function ($cordovaSQLite) {
+    .service('PaymentMethodService', function ($cordovaSQLite, $ionicPopup) {
 
         /*
             findAll Method
@@ -9,7 +9,13 @@ angular.module('starter.services')
             var query = "SELECT * FROM paymentMethod";
 
             $cordovaSQLite.execute(db, query).then(function (result) {
-                callback(result);
+                var paymentMethods = [];
+
+                for (var i = 0; i < result.rows.length; i++) {
+                    paymentMethods.push(result.rows.item(i));
+                }
+
+                callback(paymentMethods);
             });
         };
 

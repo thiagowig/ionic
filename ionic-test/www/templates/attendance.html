@@ -1,5 +1,32 @@
 <ion-view view-title="NOVO atendimento">
   <ion-content>
-    <h1>Novo</h1>
+
+    <div class="list">
+
+      <div class="item item-input">
+        <span class="input-label">Paciente</span>
+        <input type="text" ng-model="attendance.patient">
+      </div>
+
+      <div class="item item-input">
+        <span class="input-label">Valor</span>
+        <input type="number" ng-model="attendance.fullValue" required>
+      </div>
+
+      <div class="item item-input item-select">
+        <div class="input-label">Forma de pagamento</div>
+        <select ng-change="changePaymentMethod(paymentMethod.id)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
+          ng-model="paymentMethod" required>
+          <option value=""></option>
+        </select>
+      </div>
+
+      <div class="item">
+        <button class="button button-block button-balanced" ng-click="save(attendance, paymentMethod)">Salvar</button>
+      </div>
+
+    </div>
+
+
   </ion-content>
 </ion-view>
