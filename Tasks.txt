@@ -1,3 +1,4 @@
 - Separate DDL concern;
 - Separate DML concern;
-- Separate Popup concern.
+- Separate Popup concern;
+- Unit testing;
