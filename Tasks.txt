@@ -1,2 +1,3 @@
-- Separate DB concern
-- Separate Popup concern
+- Separate DDL concern;
+- Separate DML concern;
+- Separate Popup concern.
