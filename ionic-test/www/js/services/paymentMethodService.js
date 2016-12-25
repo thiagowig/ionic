@@ -30,7 +30,7 @@ angular.module('starter.services')
                 callback(result);
 
             }, function (error) {
-                PopupService.sucess('Ocorreu um erro ao buscar a forma de pagamento: ' + error);                
+                PopupService.error('Ocorreu um erro ao buscar a forma de pagamento: ' + error);                
             });
         };
 
