@@ -1,4 +1,4 @@
-- Separate DDL concern;
+- [Hard] Separate DDL concern;
 - Separate DML concern;
 - [OK] Separate Popup concern;
 - Unit testing;
