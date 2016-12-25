@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-    .controller('ConfigController', function ($scope, $ionicPopup, PaymentMethodService) {
+    .controller('ConfigController', function ($scope, PopupService, PaymentMethodService) {
 
         var findPaymenMethods = function () {
             PaymentMethodService.findAll(function (result) {
@@ -17,17 +17,11 @@ angular.module('starter.controllers')
         $scope.save = function (paymentMethodConfig) {
             if (paymentMethodConfig) {
                 PaymentMethodService.updateConfig(paymentMethodConfig, function (result) {
-                    $ionicPopup.alert({
-                        title: '<font color="green"><b>Sucesso</b></font>',
-                        template: 'As configurações foram salvas'
-                    });
+                    PopupService.sucess('As configurações foram salvas');
                 });
 
             } else {
-                $ionicPopup.alert({
-                    title: '<font color="red"><b>Erro</b></font>',
-                    template: 'Favor selecionar uma forma de pagamento'
-                });
+                PopupService.error('Favor selecionar uma forma de pagamento');
             }
         };
 

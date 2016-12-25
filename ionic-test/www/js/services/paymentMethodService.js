@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-    .service('PaymentMethodService', function ($cordovaSQLite, $ionicPopup) {
+    .service('PaymentMethodService', function ($cordovaSQLite, PopupService) {
 
         /*
             findAll Method
@@ -30,10 +30,7 @@ angular.module('starter.services')
                 callback(result);
 
             }, function (error) {
-                $ionicPopup.alert({
-                    title: '<font color="red"><b>Erro</b></font>',
-                    template: 'Ocorreu um erro ao buscar a forma de pagamento: ' + error
-                });
+                PopupService.sucess('Ocorreu um erro ao buscar a forma de pagamento: ' + error);                
             });
         };
 
@@ -48,10 +45,7 @@ angular.module('starter.services')
                 callback(result);
 
             }, function (error) {
-                $ionicPopup.alert({
-                    title: '<font color="red"><b>Erro</b></font>',
-                    template: 'Ocorreu um erro ao atualizar a configuração: ' + error
-                });
+                PopupService.sucess('Ocorreu um erro ao atualizar a configuração: ' + error);
             });
         }
-    })
+    });

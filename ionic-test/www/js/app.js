@@ -9,7 +9,8 @@ var db = null;
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-  .run(function ($ionicPlatform, $cordovaSQLite, $ionicPopup) {
+  .run(function ($ionicPlatform, $cordovaSQLite) {
+    
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -52,11 +53,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
       }, function (error) {
         console.log('Ocorreu um erro ao criar o banco de dados: ' + error);
-
-        $ionicPopup.alert({
-          title: '<font color="red"><b>Erro</b></font>',
-          template: 'Ocorreu um erro ao iniciar o banco de dados: ' + error
-        });
 
       }, function () {
         console.log('Banco de dados criado com sucesso');

@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-    .service('AttendanceService', function ($cordovaSQLite, $ionicPopup) {
+    .service('AttendanceService', function ($cordovaSQLite, PopupService) {
 
         /*
             Save the attendance
@@ -13,10 +13,7 @@ angular.module('starter.services')
                 callback(result);
 
             }, function (error) {
-                $ionicPopup.alert({
-                    title: '<font color="red"><b>Erro</b></font>',
-                    template: 'Ocorreu um erro ao salvar o atendimento: ' + error
-                });
+                PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + error);
             });
         }
-    })
+    });
