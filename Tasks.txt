@@ -2,3 +2,4 @@
 - Separate DML concern;
 - [OK] Separate Popup concern;
 - Unit testing;
+- Standardjs
