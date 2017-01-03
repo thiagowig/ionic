@@ -3,3 +3,24 @@
 - [OK] Separate Popup concern;
 - Unit testing;
 - Standardjs
+
+
+
+- Defining models
+	attendance
+		id
+		VIEW paymentMethod
+		patient TEXT
+		attendance_date
+		expected_payment_date
+		payment_date
+		VIEW full_value
+		receive_value
+		paid
+		obs TEXT
+
+- Theme
+	https://ionicthemes.com/product/sidemenu2-ionic-side-menu?utm_source=ionicmarket&utm_medium=referral&utm_campaign=sidemenu2
+	https://docs.google.com/document/d/1-OeNuC29y2wzoMGwPWqgxR6jfr_AK1sHxVc_q1sBIZQ/edit#heading=h.6i65x0cwku17
+	https://market.ionic.io/plugins/side-menu-two
+	https://ionicthemes.com/support
