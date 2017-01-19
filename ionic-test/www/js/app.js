@@ -79,6 +79,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       })
 
+      .state('app.attendanceList', {
+        url: '/attendanceList',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/attendanceList.html',
+            controller: 'AttendanceListController'
+          }
+        }
+      })
+
       .state('app.receive', {
         url: '/receive',
         views: {

@@ -1,0 +1,11 @@
+<ion-view view-title="Lista de atendimentos">
+  <ion-content>
+
+    <ion-list>
+      <ion-item ng-repeat="item in attendances">
+        {{item.id + ' - ' + item.patient + ' - ' + item.fullValue}}
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>
