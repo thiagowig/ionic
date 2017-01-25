@@ -1,3 +1,4 @@
+- Passing parameters between views
 - [Hard] Separate DDL concern;
 - Separate DML concern;
 - [OK] Separate Popup concern;
