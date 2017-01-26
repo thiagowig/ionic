@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       })
 
       .state('app.attendance', {
-        url: '/attendance',
+        url: '/attendance/{attendanceId}',
         views: {
           'menuContent': {
             templateUrl: 'templates/attendance.html',

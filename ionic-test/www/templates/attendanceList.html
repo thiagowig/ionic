@@ -2,12 +2,15 @@
   <ion-content>
 
     <ion-list>
-      <ion-item ng-repeat="item in attendances" href="#app/attendance">
-        {{item.id + ' - ' + item.patient + ' - ' + item.fullValue}}
+      <ion-item ng-repeat="attendance in attendances" href="#app/attendance/{{attendance.id}}">
+        {{attendance.id + ' - ' + attendance.patient + ' - ' + attendance.fullValue}}
       </ion-item>
     </ion-list>
 
-    http://pointdeveloper.com/add-multiple-buttons-to-list-item-for-ionic-framework-apps/
+    </br>
+    </br>
+
+    <ion-item href="#/app/attendance/">Novo atendimento</ion-item>
 
   </ion-content>
 </ion-view>

@@ -6,8 +6,8 @@ angular.module('starter.services')
          * Save the attendance
          */
         this.save = function (attendance, callback) {
-            var query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue) VALUES (?, ?, ?)';
-            var params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue];
+            var query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs) VALUES (?, ?, ?, ?)';
+            var params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs];
 
             $cordovaSQLite.execute(db, query, params).then(function (result) {
                 callback(null, result);
@@ -35,5 +35,22 @@ angular.module('starter.services')
             }, function (err) {
                 callback(err)
             })
+        }
+
+        /**
+         * Find attendance by id
+         */
+        this.findById = function (attendanceId, callback) {
+            var query = 'SELECT * FROM attendance WHERE id = ?'
+            var param = [attendanceId]
+
+            $cordovaSQLite.execute(db, query, param).then(function (result) {
+                var attendance = result.rows.item(0)
+                callback(null, attendance)
+
+            }, function (err) {
+                callback(err)
+            })
+
         }
     });
