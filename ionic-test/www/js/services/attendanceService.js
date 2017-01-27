@@ -6,14 +6,22 @@ angular.module('starter.services')
          * Save the attendance
          */
         this.save = function (attendance, callback) {
-            var query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs) VALUES (?, ?, ?, ?)';
-            var params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs];
+            var query;
+            var params;
+
+            if (attendance.id) {
+                query = 'UPDATE attendance SET idPaymentMethod = ?, patient = ?, fullValue = ?, obs = ? WHERE id = ?';
+                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.id];
+            } else {
+                query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs) VALUES (?, ?, ?, ?)';
+                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs];
+            }
 
             $cordovaSQLite.execute(db, query, params).then(function (result) {
                 callback(null, result);
 
             }, function (err) {
-                PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err);
+                callback(err)                
             });
         }
 

@@ -81,6 +81,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
       .state('app.attendanceList', {
         url: '/attendanceList',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/attendanceList.html',
