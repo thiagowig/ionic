@@ -13,8 +13,9 @@ angular.module('starter.services')
                 query = 'UPDATE attendance SET idPaymentMethod = ?, patient = ?, fullValue = ?, obs = ? WHERE id = ?';
                 params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.id];
             } else {
-                query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs) VALUES (?, ?, ?, ?)';
-                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs];
+                attendance.attendanceDate = new Date().getTime();
+                query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs, attendanceDate) VALUES (?, ?, ?, ?, ?)';
+                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.attendanceDate];
             }
 
             $cordovaSQLite.execute(db, query, params).then(function (result) {
@@ -29,13 +30,16 @@ angular.module('starter.services')
          * List all attendances
          */
         this.findAll = function (callback) {
-            var query = 'SELECT * FROM attendance';
+            var query = 'SELECT * FROM attendance ORDER BY attendanceDate DESC';
 
             $cordovaSQLite.execute(db, query, []).then(function (result) {
                 var attendances = [];
 
                 for (var i = 0; i < result.rows.length; i++) {
-                    attendances.push(result.rows.item(i));
+                    var attendance = result.rows.item(i)
+                    attendance.formattedAttendanceDate = new Date(attendance.attendanceDate)
+
+                    attendances.push(attendance);
                 }
 
                 callback(null, attendances);

@@ -1,16 +1,18 @@
 <ion-view view-title="Lista de atendimentos">
   <ion-content>
 
-    <ion-list>
+    <div class="card">
       <ion-item ng-repeat="attendance in attendances" href="#app/attendance/{{attendance.id}}">
-        {{attendance.id + ' - ' + attendance.patient + ' - ' + attendance.fullValue}}
+        <div class="item item-text-wrap item-icon-left">
+          <i class="icon {{getIcon(attendance)}}" style="color: {{getIconCollor(attendance)}}"></i> 
+          {{attendance.patient + ' - R$ ' + attendance.fullValue + ' - ' + formatDate(attendance.attendanceDate)}}
+        </div>
       </ion-item>
-    </ion-list>
+    </div>
 
     </br>
-    </br>
 
-    <ion-item href="#/app/attendance/">Novo atendimento</ion-item>
+    <button class="button button-royal" ui-sref="app.attendance">Inserir novo</button>
 
   </ion-content>
 </ion-view>

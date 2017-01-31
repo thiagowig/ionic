@@ -21,6 +21,36 @@ angular.module('starter.controllers')
       });
     }
 
+    $scope.formatDate = function (dateTime) {
+      var date = new Date(dateTime)
+      var day = date.getDate();
+      if (day.toString().length == 1)
+        day = "0" + day;
+      var month = date.getMonth() + 1;
+      if (month.toString().length == 1)
+        month = "0" + month;
+
+      return day + "/" + month;
+    }
+
+    $scope.getIcon = function(attendance) {
+      if (attendance.idPaymentMethod === 1) {
+        return 'ion-cash'
+      } else {
+        return 'ion-card'
+      }
+    }
+
+    $scope.getIconCollor = function(attendance) {
+      if (attendance.idPaymentMethod === 1) {
+        return 'black'
+      } else if (attendance.idPaymentMethod === 2){
+        return 'green'
+      } else {
+        return 'red'
+      }
+    }
+
     findAttendances();
 
   });
