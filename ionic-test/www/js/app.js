@@ -35,7 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           if (res.rows.length == 0) {
             var paymentMethods = [
               { id: 1, name: "Dinheiro", clinicTax: 55, machineTax: 0 },
-              { id: 2, name: "Debito", clinicTax: 55, machineTax: 2 },
+              { id: 2, name: "Debito", clinicTax: 55, machineTax: 2.5 },
               { id: 3, name: "Credito", clinicTax: 55, machineTax: 4 }
             ];
 

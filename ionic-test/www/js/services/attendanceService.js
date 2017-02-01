@@ -11,7 +11,7 @@ angular.module('starter.services')
 
             if (attendance.id) {
                 query = 'UPDATE attendance SET idPaymentMethod = ?, patient = ?, fullValue = ?, obs = ?, machineTaxValue = ?, clinicValue = ?, receiveValue = ? WHERE id = ?';
-                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.id, attendance.machineTaxValue, attendance.clinicValue, attendance.receiveValue];
+                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.machineTaxValue, attendance.clinicValue, attendance.receiveValue, attendance.id];
             } else {
                 attendance.attendanceDate = new Date().getTime();
                 query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs, attendanceDate, machineTaxValue, clinicValue, receiveValue) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
@@ -19,7 +19,11 @@ angular.module('starter.services')
             }
 
             $cordovaSQLite.execute(db, query, params).then(function (result) {
-                callback(null, result);
+                if (result.rowsAffected === 1) {
+                    callback(null, result)
+                } else {
+                    callback('Quantidade incorreta de linhas alteradas: ' + result.rowsAffected)
+                }
 
             }, function (err) {
                 callback(err)                
@@ -76,7 +80,7 @@ angular.module('starter.services')
                 var paymentMethodConfig = result.rows.item(0)
 
                 attendance.machineTaxValue = Math.round((attendance.fullValue * paymentMethodConfig.machineTax) / 100)
-                attendance.clinicValue = Math.round((attendance.fullValue * paymentMethodConfig.clinicTax) / 100)
+                attendance.clinicValue = Math.round(((attendance.fullValue - attendance.machineTaxValue) * paymentMethodConfig.clinicTax) / 100)
                 attendance.receiveValue = Math.round(attendance.fullValue - attendance.machineTaxValue - attendance.clinicValue)
 
                 callback(null)
