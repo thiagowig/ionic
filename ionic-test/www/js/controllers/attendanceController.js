@@ -11,13 +11,20 @@ angular.module('starter.controllers')
     $scope.save = function (attendance, paymentMethod) {
       attendance.idPaymentMethod = paymentMethod.id;
 
-      AttendanceService.save(attendance, function (err, result) {
+      AttendanceService.calculateTax(attendance, function (err) {
         if (err) {
           PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err);
         } else {
-          PopupService.sucess('Data saved');
+          AttendanceService.save(attendance, function (err, result) {
+            if (err) {
+              PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err);
+            } else {
+              attendance.id = result.insertId
+              PopupService.sucess('Atendimento salvo com sucesso')
+            }
+          });
         }
-      });
+      })
     }
 
     findPaymenMethods();

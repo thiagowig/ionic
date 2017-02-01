@@ -10,12 +10,12 @@ angular.module('starter.services')
             var params;
 
             if (attendance.id) {
-                query = 'UPDATE attendance SET idPaymentMethod = ?, patient = ?, fullValue = ?, obs = ? WHERE id = ?';
-                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.id];
+                query = 'UPDATE attendance SET idPaymentMethod = ?, patient = ?, fullValue = ?, obs = ?, machineTaxValue = ?, clinicValue = ?, receiveValue = ? WHERE id = ?';
+                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.id, attendance.machineTaxValue, attendance.clinicValue, attendance.receiveValue];
             } else {
                 attendance.attendanceDate = new Date().getTime();
-                query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs, attendanceDate) VALUES (?, ?, ?, ?, ?)';
-                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.attendanceDate];
+                query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs, attendanceDate, machineTaxValue, clinicValue, receiveValue) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+                params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.attendanceDate, attendance.machineTaxValue, attendance.clinicValue, attendance.receiveValue];
             }
 
             $cordovaSQLite.execute(db, query, params).then(function (result) {
@@ -63,6 +63,27 @@ angular.module('starter.services')
             }, function (err) {
                 callback(err)
             })
-
         }
+
+        /**
+         * Calculate the tax
+         */
+        this.calculateTax = function(attendance, callback) {
+            var query = 'SELECT * FROM paymentMethodConfig WHERE idPaymentMethod = ?'
+            var param = [attendance.idPaymentMethod]
+
+            $cordovaSQLite.execute(db, query, param).then(function (result) {
+                var paymentMethodConfig = result.rows.item(0)
+
+                attendance.machineTaxValue = Math.round((attendance.fullValue * paymentMethodConfig.machineTax) / 100)
+                attendance.clinicValue = Math.round((attendance.fullValue * paymentMethodConfig.clinicTax) / 100)
+                attendance.receiveValue = Math.round(attendance.fullValue - attendance.machineTaxValue - attendance.clinicValue)
+
+                callback(null)
+
+            }, function (err) {
+                callback(err)
+            })
+        }
+
     });
