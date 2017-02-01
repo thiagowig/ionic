@@ -1,5 +1,20 @@
+DEV
+
+- Alterar preco ao mudar a forma de pagamento
 - Datetime component
 - FAB button
+- Colocar obrigatoriedade
+	Sinalizar com asterisco
+- Payment feature
+- To receive feature
+
+
+BUG
+
+Salvar attendance 2 vezes.
+
+
+MISC
 
 - [OK] Passing parameters between views
 - [Hard] Separate DDL concern;
