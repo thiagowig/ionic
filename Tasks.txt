@@ -1,14 +1,14 @@
-BUG
-
-[OK] Salvar attendance 2 vezes.
 
 DEV
 
-- ROUND
-- Calculo do crédito
+- Bug da duplicacao
+- Cache paymentMethod
+[OK] Salvar attendance 2 vezes.
+[OK]- ROUND
+[OK] - Calculo do crédito
 [OK] - Alterar preco ao mudar a forma de pagamento
 - Datetime component
-- FAB button
+[OK] - FAB button
 - Colocar obrigatoriedade
 	Sinalizar com asterisco
 - Payment feature
