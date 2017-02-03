@@ -79,9 +79,9 @@ angular.module('starter.services')
             $cordovaSQLite.execute(db, query, param).then(function (result) {
                 var paymentMethodConfig = result.rows.item(0)
 
-                attendance.machineTaxValue = Math.round((attendance.fullValue * paymentMethodConfig.machineTax) / 100)
-                attendance.clinicValue = Math.round(((attendance.fullValue - attendance.machineTaxValue) * paymentMethodConfig.clinicTax) / 100)
-                attendance.receiveValue = Math.round(attendance.fullValue - attendance.machineTaxValue - attendance.clinicValue)
+                attendance.machineTaxValue = roundValue((attendance.fullValue * paymentMethodConfig.machineTax) / 100)
+                attendance.clinicValue = roundValue(((attendance.fullValue - attendance.machineTaxValue) * paymentMethodConfig.clinicTax) / 100)
+                attendance.receiveValue = roundValue(attendance.fullValue - attendance.machineTaxValue - attendance.clinicValue)
 
                 callback(null)
 
@@ -89,5 +89,8 @@ angular.module('starter.services')
                 callback(err)
             })
         }
-
     });
+
+function roundValue(value) {
+    return Math.round(value * 100) / 100
+}

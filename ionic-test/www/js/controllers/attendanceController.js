@@ -33,6 +33,10 @@ angular.module('starter.controllers')
             PopupService.error('Ocorreu um erro ao calcular as taxas: ' + err);
           }
         })
+      } else if (attendance) {
+        attendance.receiveValue = null
+        attendance.machineTaxValue = null
+        attendance.clinicValue = null
       }
     }
 
