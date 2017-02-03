@@ -4,16 +4,16 @@
     <div class="card">
       <ion-item ng-repeat="attendance in attendances" href="#app/attendance/{{attendance.id}}">
         <div class="item item-text-wrap item-icon-left">
-          <i class="icon {{getIcon(attendance)}}" style="color: {{getIconCollor(attendance)}}"></i> 
-          {{attendance.patient + ' - R$ ' + attendance.fullValue + ' - ' + formatDate(attendance.attendanceDate)}}
+          <i class="icon {{getIcon(attendance)}}" style="color: {{getIconCollor(attendance)}}"></i> {{attendance.patient
+          + ' - R$ ' + attendance.fullValue + ' - ' + formatDate(attendance.attendanceDate)}}
         </div>
       </ion-item>
     </div>
 
-    <br />
-
-    <button class="button button-royal" ui-sref="app.attendance">Inserir novo</button>
-    
-
+    <div class="fab-button">
+      <fab-button-right target-id="content" ui-sref="app.attendance">
+        <i class="icon ion ion-plus-round"></i>
+      </fab-button-right>
+    </div>
   </ion-content>
 </ion-view>

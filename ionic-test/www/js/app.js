@@ -7,7 +7,7 @@
 
 var db = null;
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
+angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'starter.services', 'ngCordova'])
 
   .run(function ($ionicPlatform, $cordovaSQLite) {
     
