@@ -15,10 +15,6 @@ angular.module('starter.controllers')
         if (err) {
           PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err);
         } else {
-          if (result.insertId) {
-            attendance.id = result.insertId
-          }
-
           PopupService.sucess('Atendimento salvo com sucesso')
         }
       })

@@ -20,6 +20,10 @@ angular.module('starter.services')
 
             $cordovaSQLite.execute(db, query, params).then(function (result) {
                 if (result.rowsAffected === 1) {
+                    if (!attendance.id) {
+                        attendance.id = result.insertId
+                    }
+
                     callback(null, result)
                 } else {
                     callback('Quantidade incorreta de linhas alteradas: ' + result.rowsAffected)
