@@ -1,7 +1,8 @@
 
 DEV
 
-- Bug da duplicacao
+- Adicionar parcelamento
+[OK] - Bug da duplicacao
 - Cache paymentMethod
 [OK] Salvar attendance 2 vezes.
 [OK]- ROUND
