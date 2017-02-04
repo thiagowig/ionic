@@ -1,51 +1,48 @@
 angular.module('starter.services')
 
     .service('PaymentMethodService', function ($cordovaSQLite, PopupService) {
-
         /*
             findAll Method
         */
-        this.findAll = function (callback) {
-            var query = "SELECT * FROM paymentMethod";
+      this.findAll = function (callback) {
+        var query = 'SELECT * FROM paymentMethod'
 
-            $cordovaSQLite.execute(db, query).then(function (result) {
-                var paymentMethods = [];
+        $cordovaSQLite.execute(db, query).then(function (result) {
+          var paymentMethods = []
 
-                for (var i = 0; i < result.rows.length; i++) {
-                    paymentMethods.push(result.rows.item(i));
-                }
+          for (var i = 0; i < result.rows.length; i++) {
+            paymentMethods.push(result.rows.item(i))
+          }
 
-                callback(paymentMethods);
-            });
-        };
+          callback(paymentMethods)
+        })
+      }
 
         /*
             findConfigByPaymentMethod Method
         */
-        this.findConfigByPaymentMethod = function (idPaymentMethod, callback) {
-            var query = 'SELECT * FROM paymentMethodConfig WHERE idPaymentMethod = ?';
-            var params = [idPaymentMethod];
+      this.findConfigByPaymentMethod = function (idPaymentMethod, callback) {
+        var query = 'SELECT * FROM paymentMethodConfig WHERE idPaymentMethod = ?'
+        var params = [idPaymentMethod]
 
-            $cordovaSQLite.execute(db, query, params).then(function (result) {
-                callback(result);
-
-            }, function (error) {
-                PopupService.error('Ocorreu um erro ao buscar a forma de pagamento: ' + error);                
-            });
-        };
+        $cordovaSQLite.execute(db, query, params).then(function (result) {
+          callback(result)
+        }, function (error) {
+          PopupService.error('Ocorreu um erro ao buscar a forma de pagamento: ' + error)
+        })
+      }
 
         /*
             updateConfig Method
         */
-        this.updateConfig = function (paymentMethodConfig, callback) {
-            var query = 'UPDATE paymentMethodConfig SET clinicTax = ?, machineTax = ? WHERE id = ?';
-            var params = [paymentMethodConfig.clinicTax, paymentMethodConfig.machineTax, paymentMethodConfig.id];
+      this.updateConfig = function (paymentMethodConfig, callback) {
+        var query = 'UPDATE paymentMethodConfig SET clinicTax = ?, machineTax = ? WHERE id = ?'
+        var params = [paymentMethodConfig.clinicTax, paymentMethodConfig.machineTax, paymentMethodConfig.id]
 
-            $cordovaSQLite.execute(db, query, params).then(function (result) {
-                callback(result);
-
-            }, function (error) {
-                PopupService.sucess('Ocorreu um erro ao atualizar a configuração: ' + error);
-            });
-        }
-    });
+        $cordovaSQLite.execute(db, query, params).then(function (result) {
+          callback(result)
+        }, function (error) {
+          PopupService.sucess('Ocorreu um erro ao atualizar a configuração: ' + error)
+        })
+      }
+    })

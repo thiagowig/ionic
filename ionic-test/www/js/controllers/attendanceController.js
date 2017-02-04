@@ -1,19 +1,18 @@
 angular.module('starter.controllers')
 
   .controller('AttendanceController', function ($scope, PopupService, PaymentMethodService, AttendanceService, $stateParams) {
-
     var findPaymenMethods = function () {
       PaymentMethodService.findAll(function (result) {
-        $scope.paymentMethods = result;
+        $scope.paymentMethods = result
       })
-    };
+    }
 
     $scope.save = function (attendance, paymentMethod) {
-      attendance.idPaymentMethod = paymentMethod.id;
+      attendance.idPaymentMethod = paymentMethod.id
 
       AttendanceService.save(attendance, function (err, result) {
         if (err) {
-          PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err);
+          PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err)
         } else {
           PopupService.sucess('Atendimento salvo com sucesso')
         }
@@ -26,7 +25,7 @@ angular.module('starter.controllers')
 
         AttendanceService.calculateTax(attendance, function (err) {
           if (err) {
-            PopupService.error('Ocorreu um erro ao calcular as taxas: ' + err);
+            PopupService.error('Ocorreu um erro ao calcular as taxas: ' + err)
           }
         })
       } else if (attendance) {
@@ -36,7 +35,7 @@ angular.module('starter.controllers')
       }
     }
 
-    findPaymenMethods();
+    findPaymenMethods()
 
     if ($stateParams.attendanceId) {
       AttendanceService.findById($stateParams.attendanceId, function (err, attendance) {
@@ -49,10 +48,8 @@ angular.module('starter.controllers')
             if (element.id === attendance.idPaymentMethod) {
               $scope.paymentMethod = element
             }
-          });
-
+          })
         }
       })
     }
-
-  });
+  })

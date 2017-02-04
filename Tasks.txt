@@ -1,23 +1,24 @@
 
 DEV
 
-- Adicionar parcelamento
-[OK] - Bug da duplicacao
-- Cache paymentMethod
-[OK] Salvar attendance 2 vezes.
-[OK]- ROUND
-[OK] - Calculo do crédito
-[OK] - Alterar preco ao mudar a forma de pagamento
 - Datetime component
-[OK] - FAB button
+- Cache paymentMethod ($rootScope)
+- Adicionar parcelamento
 - Colocar obrigatoriedade
 	Sinalizar com asterisco
 - Payment feature
 - To receive feature
+[OK] - Bug da duplicacao
+[OK] Salvar attendance 2 vezes.
+[OK]- ROUND
+[OK] - Calculo do crédito
+[OK] - Alterar preco ao mudar a forma de pagamento
+[OK] - FAB button
 
 
 MISC
 
+- I18N
 - [OK] Passing parameters between views
 - [Hard] Separate DDL concern;
 - Separate DML concern;
