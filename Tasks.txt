@@ -19,14 +19,12 @@ DEV
 MISC
 
 - I18N
-- [OK] Passing parameters between views
 - [Hard] Separate DDL concern;
 - Separate DML concern;
-- [OK] Separate Popup concern;
 - Unit testing;
-- Standardjs
-
-
+[OK]- Standardjs
+[OK]- [OK] Passing parameters between views
+[OK]- [OK] Separate Popup concern;
 
 - Defining models
 	attendance
