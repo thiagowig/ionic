@@ -1,39 +1,31 @@
 angular.module('starter.controllers')
 
   .controller('AttendanceListController', function ($scope, PopupService, PaymentMethodService, AttendanceService) {
-
     var findAttendances = function () {
       AttendanceService.findAll(function (err, result) {
         if (err) {
-          PopupService.error('Ocorreu um erro ao buscar os atendimentos: ' + err);
-
+          PopupService.error('Ocorreu um erro ao buscar os atendimentos: ' + err)
         } else {
-          $scope.attendances = result;
+          $scope.attendances = result
         }
       })
-    };
-
-    $scope.save = function (attendance, paymentMethod) {
-      attendance.idPaymentMethod = paymentMethod.id;
-
-      AttendanceService.save(attendance, function (arguments) {
-        PopupService.sucess('Data saved');
-      });
     }
 
     $scope.formatDate = function (dateTime) {
       var date = new Date(dateTime)
-      var day = date.getDate();
-      if (day.toString().length == 1)
-        day = "0" + day;
-      var month = date.getMonth() + 1;
-      if (month.toString().length == 1)
-        month = "0" + month;
+      var day = date.getDate()
+      if (day.toString().length === 1) {
+        day = '0' + day
+      }
+      var month = date.getMonth() + 1
+      if (month.toString().length === 1) {
+        month = '0' + month
+      }
 
-      return day + "/" + month;
+      return day + '/' + month
     }
 
-    $scope.getIcon = function(attendance) {
+    $scope.getIcon = function (attendance) {
       if (attendance.idPaymentMethod === 1) {
         return 'ion-cash'
       } else {
@@ -41,16 +33,15 @@ angular.module('starter.controllers')
       }
     }
 
-    $scope.getIconCollor = function(attendance) {
+    $scope.getIconCollor = function (attendance) {
       if (attendance.idPaymentMethod === 1) {
         return 'black'
-      } else if (attendance.idPaymentMethod === 2){
+      } else if (attendance.idPaymentMethod === 2) {
         return 'green'
       } else {
         return 'red'
       }
     }
 
-    findAttendances();
-
-  });
+    findAttendances()
+  })

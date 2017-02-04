@@ -26,6 +26,28 @@
   ],
   "cordovaPlatforms": [],
   "scripts": {
-    "std": "gulp standard"
+    "std": "standard"
+  },
+  "standard": {
+    "globals": [
+      "angular", 
+      "db",
+      "self",
+      "cordova",
+      "StatusBar"
+    ],
+    "ignore": [
+      "hooks/",
+      "node_modules/",
+      "platforms/",
+      "plugins/",
+      "resources/",
+      "scss/",
+      "www/css/",
+      "www/img/",
+      "www/lib/",
+      "www/templates/",
+      "gulpfile.js"
+    ]
   }
 }
