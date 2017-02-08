@@ -1,52 +1,59 @@
 <ion-view view-title="Atendimento">
   <ion-content>
 
-    <div class="list">
+    <form name="myForm" novalidate>
+      <div class="list">
 
-      <div class="item item-input">
-        <span class="input-label"><strong>Paciente</strong></span>
-        <input type="text" ng-model="attendance.patient">
-      </div>
+        <div class="item item-input">
+          <span class="input-label"><strong>Paciente</strong></span>
+          <input type="text" name="patient" ng-model="attendance.patient" required>
+        </div>
 
-      <div class="item item-input">
-        <span class="input-label"><strong>Valor total</strong></span>
-        <input type="number" ng-change="calculateTax(attendance, paymentMethod)" ng-model="attendance.fullValue" required>
-      </div>
+        <div class="item item-input">
+          <span class="input-label"><strong>Valor total</strong></span>
+          <input type="number" ng-change="calculateTax(attendance, paymentMethod)" ng-model="attendance.fullValue" ng-required="required">
+        </div>
 
-      <div class="item item-input item-select">
-        <div class="input-label"><strong>Forma de pagamento</strong></div>
-        <select ng-change="calculateTax(attendance, paymentMethod)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
-          ng-model="paymentMethod" required>
+        <div class="item item-input item-select">
+          <div class="input-label"><strong>Forma de pagamento</strong></div>
+          <select ng-change="calculateTax(attendance, paymentMethod)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
+            ng-model="paymentMethod" ng-required="required">
           <option value=""></option>
         </select>
-      </div>
+        </div>
 
-      <div class="item item-input">
-        <span class="input-label"><strong>Valor a receber</strong></span>
-        <input type="number" ng-model="attendance.receiveValue" disabled />
-      </div>
+        <div class="item item-input">
+          <span class="input-label"><strong>Valor a receber</strong></span>
+          <input type="number" ng-model="attendance.receiveValue" disabled />
+        </div>
 
-      <div class="item item-input">
-        <span class="input-label"><strong>Taxa da máquina</strong></span>
-        <input type="number" ng-model="attendance.machineTaxValue" disabled />
-      </div>
+        <div class="item item-input">
+          <span class="input-label"><strong>Taxa da máquina</strong></span>
+          <input type="number" ng-model="attendance.machineTaxValue" disabled />
+        </div>
 
-      <div class="item item-input">
-        <span class="input-label"><strong>Taxa da clínica</strong></span>
-        <input type="number" ng-model="attendance.clinicValue" disabled />
-      </div>
+        <div class="item item-input">
+          <span class="input-label"><strong>Taxa da clínica</strong></span>
+          <input type="number" ng-model="attendance.clinicValue" disabled />
+        </div>
 
-      <div class="item item-input">
-        <span class="input-label"><strong>Observações</strong></span>
-        <textarea ng-model="attendance.obs" rows="4"></textarea>
-      </div>
+        <div class="item item-input">
+          <span class="input-label"><strong>Observações</strong></span>
+          <textarea ng-model="attendance.obs" rows="4"></textarea>
+        </div>
 
-      <div class="item">
-        <button class="button button-block button-balanced" ng-click="save(attendance, paymentMethod)">Salvar</button>
-      </div>
+        <div class="item">
+          <button class="button button-block button-balanced" ng-click="save(attendance, paymentMethod)">Salvar</button>
+        </div>
 
+      </div>
+    </form>
+
+    <div class="padding">
+      <p ng-show="myForm.patient.$error.required">* Username is required</p>
     </div>
 
+    <h1>{{myForm.patient.$valid}}</h1>
 
   </ion-content>
 </ion-view>
