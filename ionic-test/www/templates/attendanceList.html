@@ -3,13 +3,12 @@
 
     <div class="card">
       <ion-item ng-repeat="attendance in attendances" href="#app/attendance/{{attendance.id}}">
-        <div class="item item-text-wrap item-icon-left">
+        <div class="item-text-wrap item-icon-left">
           <i class="icon {{getIcon(attendance)}}" style="color: {{getIconCollor(attendance)}}"></i> {{attendance.patient
           + ' - R$ ' + attendance.fullValue + ' - ' + formatDate(attendance.attendanceDate)}}
         </div>
       </ion-item>
     </div>
-
 
   </ion-content>
 
