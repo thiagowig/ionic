@@ -1,7 +1,7 @@
 <ion-view view-title="Atendimento">
   <ion-content>
 
-    <form name="myForm" novalidate>
+    <form name="attendanceForm" novalidate>
       <div class="list">
 
         <div class="item item-input">
@@ -11,13 +11,13 @@
 
         <div class="item item-input">
           <span class="input-label"><strong>Valor total</strong></span>
-          <input type="number" ng-change="calculateTax(attendance, paymentMethod)" ng-model="attendance.fullValue" ng-required="required">
+          <input type="number" ng-change="calculateTax(attendance, paymentMethod)" ng-model="attendance.fullValue" required>
         </div>
 
         <div class="item item-input item-select">
           <div class="input-label"><strong>Forma de pagamento</strong></div>
           <select ng-change="calculateTax(attendance, paymentMethod)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
-            ng-model="paymentMethod" ng-required="required">
+            ng-model="paymentMethod" required>
           <option value=""></option>
         </select>
         </div>
@@ -43,17 +43,11 @@
         </div>
 
         <div class="item">
-          <button class="button button-block button-balanced" ng-click="save(attendance, paymentMethod)">Salvar</button>
+          <button class="button button-block button-balanced" ng-click="save(attendance, paymentMethod)" ng-disabled="attendanceForm.$invalid">Salvar</button>
         </div>
 
       </div>
+
     </form>
-
-    <div class="padding">
-      <p ng-show="myForm.patient.$error.required">* Username is required</p>
-    </div>
-
-    <h1>{{myForm.patient.$valid}}</h1>
-
   </ion-content>
 </ion-view>
