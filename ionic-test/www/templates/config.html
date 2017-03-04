@@ -2,7 +2,11 @@
   <ion-content>
 
     <div class="list">
-      
+
+      <div class="item item-divider">
+        Taxas
+      </div>
+
       <div class="item item-input item-select">
         <div class="input-label">Forma de pagamento</div>
         <select ng-change="changePaymentMethod(paymentMethod.id)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
@@ -19,6 +23,18 @@
       <div class="item item-input">
         <span class="input-label">Taxa da maquina</span>
         <input type="number" ng-maxlength="3" ng-model="paymentMethodConfig.machineTax">
+      </div>
+
+      <div class="item item-divider">
+        Miscelânia
+      </div>
+
+      <div class="item item-input item-select">
+        <span class="input-label">Pagamento em</span>
+        <select ng-model="">
+          <option value="0">Segunda</option>
+          <option value="1">Terça</option>
+        </select>
       </div>
 
       <div class="item">

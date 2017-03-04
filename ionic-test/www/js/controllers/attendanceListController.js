@@ -43,5 +43,15 @@ angular.module('starter.controllers')
       }
     }
 
+    $scope.showConfirm = function (attendanceId) {
+      PopupService.confirm('Tem certeza que deseja deletar este registro?', function (res) {
+        if (res) {
+          console.log('YES. Delete it: ' + attendanceId)
+        } else {
+          console.log('NOOOOO')
+        }
+      })
+    }
+
     findAttendances()
   })

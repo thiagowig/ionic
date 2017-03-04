@@ -1,11 +1,19 @@
 
+- Clicar e segura ou tres pontinhos para deletar;
+- Próxima data de pagamento e formatada.
+- Show and hide values fields.
+- Camel case
+- (Swipe) http://ionicframework.com/docs/api/directive/ionList/
+- (Action Sheet) http://mcgivery.com/understanding-ionic-framework-action-sheet/
+
+
 DEV
 
 - Datetime component
 - Cache paymentMethod ($rootScope)
 - Adicionar parcelamento
-- Colocar obrigatoriedade
-	Sinalizar com asterisco
+[OK] - Colocar obrigatoriedade
+[OK] 	Sinalizar com asterisco
 - Payment feature
 - To receive feature
 [OK] - Bug da duplicacao
