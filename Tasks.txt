@@ -1,4 +1,6 @@
 
+
+
 - Clicar e segura ou tres pontinhos para deletar;
 - Próxima data de pagamento e formatada.
 - Show and hide values fields.
@@ -12,6 +14,7 @@ DEV
 - Datetime component
 - Cache paymentMethod ($rootScope)
 - Adicionar parcelamento
+[OK]~Pegar valor da config
 [OK] - Colocar obrigatoriedade
 [OK] 	Sinalizar com asterisco
 - Payment feature

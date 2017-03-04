@@ -5,17 +5,17 @@
       <div class="list">
 
         <div class="item item-input">
-          <span class="input-label"><strong>Paciente</strong></span>
-          <input type="text" name="patient" ng-model="attendance.patient" required>
+          <span class="input-label"><strong>Paciente </strong> <span style="color: red">*</span></span>
+          <input type="text" name="patient" ng-model="attendance.patient" required capitalize>
         </div>
 
         <div class="item item-input">
-          <span class="input-label"><strong>Valor total</strong></span>
+          <span class="input-label"><strong>Valor total </strong> <span style="color: red">*</span></span>
           <input type="number" ng-change="calculateTax(attendance, paymentMethod)" ng-model="attendance.fullValue" required>
         </div>
 
         <div class="item item-input item-select">
-          <div class="input-label"><strong>Forma de pagamento</strong></div>
+          <div class="input-label"><strong>Forma de pagamento </strong> <span style="color: red">*</span></div>
           <select ng-change="calculateTax(attendance, paymentMethod)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
             ng-model="paymentMethod" required>
           <option value=""></option>
@@ -35,6 +35,11 @@
         <div class="item item-input">
           <span class="input-label"><strong>Taxa da clínica</strong></span>
           <input type="number" ng-model="attendance.clinicValue" disabled />
+        </div>
+
+        <div class="item item-input">
+          <span class="input-label"><strong>Data de pagamento</strong></span>
+          <span>{{attendance.expectedPaymentDate | date: 'dd/MM/yyyy' }}</span>
         </div>
 
         <div class="item item-input">

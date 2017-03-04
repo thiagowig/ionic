@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-    .service('AttendanceService', function ($cordovaSQLite, PopupService) {
+    .service('AttendanceService', function ($cordovaSQLite, PopupService, DateService) {
         /**
          * Save the attendance
          */
@@ -9,12 +9,12 @@ angular.module('starter.services')
         var params
 
         if (attendance.id) {
-          query = 'UPDATE attendance SET idPaymentMethod = ?, patient = ?, fullValue = ?, obs = ?, machineTaxValue = ?, clinicValue = ?, receiveValue = ? WHERE id = ?'
-          params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.machineTaxValue, attendance.clinicValue, attendance.receiveValue, attendance.id]
+          query = 'UPDATE attendance SET idPaymentMethod = ?, patient = ?, fullValue = ?, obs = ?, machineTaxValue = ?, clinicValue = ?, receiveValue = ?, expectedPaymentDate = ? WHERE id = ?'
+          params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.machineTaxValue, attendance.clinicValue, attendance.receiveValue, attendance.expectedPaymentDate, attendance.id]
         } else {
           attendance.attendanceDate = new Date().getTime()
-          query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs, attendanceDate, machineTaxValue, clinicValue, receiveValue) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-          params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.attendanceDate, attendance.machineTaxValue, attendance.clinicValue, attendance.receiveValue]
+          query = 'INSERT INTO attendance (idPaymentMethod, patient, fullValue, obs, attendanceDate, machineTaxValue, clinicValue, receiveValue, expectedPaymentDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+          params = [attendance.idPaymentMethod, attendance.patient, attendance.fullValue, attendance.obs, attendance.attendanceDate, attendance.machineTaxValue, attendance.clinicValue, attendance.receiveValue, attendance.expectedPaymentDate]
         }
 
         $cordovaSQLite.execute(db, query, params).then(function (result) {
@@ -82,6 +82,11 @@ angular.module('starter.services')
           attendance.machineTaxValue = roundValue((attendance.fullValue * paymentMethodConfig.machineTax) / 100)
           attendance.clinicValue = roundValue(((attendance.fullValue - attendance.machineTaxValue) * paymentMethodConfig.clinicTax) / 100)
           attendance.receiveValue = roundValue(attendance.fullValue - attendance.machineTaxValue - attendance.clinicValue)
+
+          attendance.expectedPaymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod)
+          if (attendance.expectedPaymentDate) {
+            attendance.expectedPaymentDate = attendance.expectedPaymentDate.getTime()
+          }
 
           callback(null)
         }, function (err) {

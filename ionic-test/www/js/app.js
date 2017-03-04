@@ -9,7 +9,7 @@ var db = null
 
 angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-  .run(function ($ionicPlatform, $cordovaSQLite) {
+  .run(function ($ionicPlatform, $cordovaSQLite, $rootScope) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -28,6 +28,7 @@ angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'st
         tx.executeSql('CREATE TABLE IF NOT EXISTS paymentMethod (id INTEGER PRIMARY KEY, name TEXT)')
         tx.executeSql('CREATE TABLE IF NOT EXISTS paymentMethodConfig (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER, clinicTax NUMBER, machineTax NUMBER, FOREIGN KEY(idPaymentMethod) REFERENCES paymentMethod(id)) ')
         tx.executeSql('CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER, patient TEXT, attendanceDate LONG, expectedPaymentDate LONG, paymentDate LONG, fullValue REAL NOT NULL, receiveValue REAL, machineTaxValue REAL, clinicValue REAL paid INTEGER, obs TEXT)')
+        tx.executeSql('CREATE TABLE IF NOT EXISTS configuration (id INTEGER PRIMARY KEY, name patient TEXT, value TEXT)')
 
         tx.executeSql('SELECT * FROM paymentMethod', [], function (tx, res) {
           if (res.rows.length === 0) {
@@ -47,6 +48,33 @@ angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'st
               tx.executeSql(insertConfigQuery, insertConfigValue)
             })
           }
+        })
+
+        tx.executeSql('SELECT * FROM configuration', [], function (tx, result) {
+          $rootScope.configuration = {}
+
+          if (result.rows.length === 0) {
+            var configurations = [
+              { name: 'paymentDayOfWeek', value: 3 }
+            ]
+
+            configurations.forEach(function (configuration) {
+              $rootScope.configuration[configuration.name] = configuration.value
+
+              var query = 'INSERT INTO configuration (name, value) VALUES (?, ?)'
+              var params = [configuration.name, configuration.value]
+              tx.executeSql(query, params)
+            })
+
+          } else {
+            for (var i = 0; i < result.rows.length; i++) {
+              configuration = result.rows.item(i)
+
+              $rootScope.configuration[configuration.name] = configuration.value
+            }
+          }
+
+          console.log('ROOT ' + JSON.stringify($rootScope.configuration))
         })
       }, function (error) {
         console.log('Ocorreu um erro ao criar o banco de dados: ' + error)
@@ -130,5 +158,7 @@ angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'st
   })
 
 angular.module('starter.controllers', [])
+
+angular.module('starter.directives', [])
 
 angular.module('starter.services', [])

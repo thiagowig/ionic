@@ -1,45 +1,62 @@
-<ion-view view-title="Configuração">
+<ion-view view-title="Configurações">
   <ion-content>
 
     <div class="list">
 
-      <div class="item item-divider">
-        Taxas
-      </div>
 
-      <div class="item item-input item-select">
-        <div class="input-label">Forma de pagamento</div>
-        <select ng-change="changePaymentMethod(paymentMethod.id)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
-          ng-model="paymentMethod" required>
+      <form name="paymentMethodConfigForm" novalidate>
+        <div class="item item-divider">
+          Taxas
+        </div>
+
+        <div class="item item-input item-select">
+          <div class="input-label">Forma de pagamento <span style="color: red">*</span></div>
+          <select ng-change="changePaymentMethod(paymentMethod.id)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
+            ng-model="paymentMethod" required>
           <option value=""></option>
         </select>
-      </div>
+        </div>
 
-      <div class="item item-input">
-        <span class="input-label">Taxa da cliníca</span>
-        <input type="number" ng-maxlength="3" ng-model="paymentMethodConfig.clinicTax">
-      </div>
+        <div class="item item-input">
+          <span class="input-label">Taxa da cliníca <span style="color: red">*</span></span>
+          <input type="number" ng-maxlength="3" ng-model="paymentMethodConfig.clinicTax" required>
+        </div>
 
-      <div class="item item-input">
-        <span class="input-label">Taxa da maquina</span>
-        <input type="number" ng-maxlength="3" ng-model="paymentMethodConfig.machineTax">
-      </div>
+        <div class="item item-input">
+          <span class="input-label">Taxa da maquina <span style="color: red">*</span></span>
+          <input type="number" ng-maxlength="3" ng-model="paymentMethodConfig.machineTax" required>
+        </div>
 
-      <div class="item item-divider">
-        Miscelânia
-      </div>
+        <div class="item">
+          <button class="button button-block button-balanced" ng-click="savePaymentMethodConfig(paymentMethodConfig)" ng-disabled="paymentMethodConfigForm.$invalid">Salvar</button>
+        </div>
+      </form>
 
-      <div class="item item-input item-select">
-        <span class="input-label">Pagamento em</span>
-        <select ng-model="">
-          <option value="0">Segunda</option>
-          <option value="1">Terça</option>
+      <form name="generalForm" novalidate>
+        <div class="item item-divider">
+          Gerais
+        </div>
+
+        <div class="item item-input item-select">
+          <span class="input-label">Dia de pagamento <span style="color: red">*</span></span>
+          <select ng-model="configuration.paymentDayOfWeek" required> 
+          <option value=""></option>
+          <option value="1">Segunda</option>
+          <option value="2">Terça</option>
+          <option value="3">Quarta</option>
+          <option value="4">Quinta</option>
+          <option value="5">Sexta</option>
+          <option value="6">Sábado</option>
+          <option value="0">Domingo</option>
         </select>
-      </div>
+        </div>
 
-      <div class="item">
-        <button class="button button-block button-balanced" ng-click="save(paymentMethodConfig)">Salvar</button>
-      </div>
+        <div class="item">
+          <button class="button button-block button-balanced" ng-click="saveConfiguration(configuration)" ng-disabled="generalForm.$invalid">Salvar</button>
+        </div>
+
+      </form>
+
 
     </div>
 

@@ -1,7 +1,7 @@
 angular.module('starter.services')
 
   .service('PopupService', function ($ionicPopup) {
-    function showMessage(color, header, message) {
+    function showMessage (color, header, message) {
       $ionicPopup.alert({
         title: '<font color="' + color + '"><b>' + header + '</b></font>',
         template: message
@@ -20,9 +20,8 @@ angular.module('starter.services')
       var confirmPopup = $ionicPopup.confirm({
         title: 'Confirmação',
         template: message
-      });
+      })
 
       confirmPopup.then(callback)
     }
-
   })

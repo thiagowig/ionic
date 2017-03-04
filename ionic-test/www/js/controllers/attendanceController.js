@@ -32,6 +32,7 @@ angular.module('starter.controllers')
         attendance.receiveValue = null
         attendance.machineTaxValue = null
         attendance.clinicValue = null
+        attendance.expectedPaymentDate = null
       }
     }
 
