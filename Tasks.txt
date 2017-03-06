@@ -1,24 +1,27 @@
 
+- Attendance
+	- Camel case
+	- (Pagination) http://stackoverflow.com/questions/32255155/pagination-in-ionic
+	- Show and hide values fields.
+	- Adicionar parcelamento
+	- Datetime component
+	- Delete attendance	
+		- (Swipe) http://ionicframework.com/docs/api/directive/ionList/
+		- Clicar e segurar ou tres pontinhos para deletar;
+		- (Action Sheet) http://mcgivery.com/understanding-ionic-framework-action-sheet/
+
+- To receive feature
+- Payment feature
+- Dashboard feature
+- General
+	- Cache paymentMethod ($rootScope)
+	- Separete routes.js
 
 
-- Clicar e segura ou tres pontinhos para deletar;
-- Próxima data de pagamento e formatada.
-- Show and hide values fields.
-- Camel case
-- (Swipe) http://ionicframework.com/docs/api/directive/ionList/
-- (Action Sheet) http://mcgivery.com/understanding-ionic-framework-action-sheet/
-
-
-DEV
-
-- Datetime component
-- Cache paymentMethod ($rootScope)
-- Adicionar parcelamento
+[OK] - Próxima data de pagamento e formatada.
 [OK]~Pegar valor da config
 [OK] - Colocar obrigatoriedade
 [OK] 	Sinalizar com asterisco
-- Payment feature
-- To receive feature
 [OK] - Bug da duplicacao
 [OK] Salvar attendance 2 vezes.
 [OK]- ROUND

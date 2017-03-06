@@ -7,7 +7,7 @@
 
 var db = null
 
-angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'starter.services', 'ngCordova'])
+angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'starter.services', 'starter.routes', 'starter.directives', 'ngCordova'])
 
   .run(function ($ionicPlatform, $cordovaSQLite, $rootScope) {
     $ionicPlatform.ready(function () {
@@ -65,10 +65,9 @@ angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'st
               var params = [configuration.name, configuration.value]
               tx.executeSql(query, params)
             })
-
           } else {
             for (var i = 0; i < result.rows.length; i++) {
-              configuration = result.rows.item(i)
+              var configuration = result.rows.item(i)
 
               $rootScope.configuration[configuration.name] = configuration.value
             }
@@ -84,81 +83,10 @@ angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'st
     })
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider
-
-      .state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'templates/menu.html'
-      })
-
-      .state('app.attendance', {
-        url: '/attendance/{attendanceId}',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/attendance.html',
-            controller: 'AttendanceController'
-          }
-        }
-      })
-
-      .state('app.attendanceList', {
-        url: '/attendanceList',
-        cache: false,
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/attendanceList.html',
-            controller: 'AttendanceListController'
-          }
-        }
-      })
-
-      .state('app.receive', {
-        url: '/receive',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/receive.html',
-            controller: 'ReceiveController'
-          }
-        }
-      })
-
-      .state('app.payment', {
-        url: '/payment',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/payment.html',
-            controller: 'PaymentController'
-          }
-        }
-      })
-
-      .state('app.config', {
-        url: '/config',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/config.html',
-            controller: 'ConfigController'
-          }
-        }
-      })
-
-      .state('app.help', {
-        url: '/help',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/help.html'
-          }
-        }
-      })
-
-    // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/payment')
-  })
-
 angular.module('starter.controllers', [])
 
 angular.module('starter.directives', [])
 
 angular.module('starter.services', [])
+
+angular.module('starter.routes', [])
