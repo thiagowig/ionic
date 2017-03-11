@@ -19,11 +19,11 @@ angular.module('starter.controllers')
       })
     }
 
-    $scope.calculateTax = function (attendance, paymentMethod) {
+    $scope.calculateTaxesAndDates = function (attendance, paymentMethod) {
       if (attendance && attendance.fullValue && paymentMethod) {
         attendance.idPaymentMethod = paymentMethod.id
 
-        AttendanceService.calculateTax(attendance, function (err) {
+        AttendanceService.calculateTaxesAndDates(attendance, function (err) {
           if (err) {
             PopupService.error('Ocorreu um erro ao calcular as taxas: ' + err)
           }

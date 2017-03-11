@@ -11,33 +11,38 @@
 
         <div class="item item-input">
           <span class="input-label"><strong>Valor total </strong> <span style="color: red">*</span></span>
-          <input type="number" ng-change="calculateTax(attendance, paymentMethod)" ng-model="attendance.fullValue" required>
+          <input type="number" ng-change="calculateTaxesAndDates(attendance, paymentMethod)" ng-model="attendance.fullValue" required>
         </div>
 
         <div class="item item-input item-select">
           <div class="input-label"><strong>Forma de pagamento </strong> <span style="color: red">*</span></div>
-          <select ng-change="calculateTax(attendance, paymentMethod)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
+          <select ng-change="calculateTaxesAndDates(attendance, paymentMethod)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
             ng-model="paymentMethod" required>
           <option value=""></option>
         </select>
         </div>
 
+        <div class="item item-input" ng-show="paymentMethod.name === 'Credito'">
+          <span class="input-label"><strong>Parcelas </strong> <span style="color: red">*</span></span>
+          <input type="number" ng-change="calculateTaxesAndDates(attendance, paymentMethod)" ng-model="attendance.installments" required>
+        </div>
+
         <div class="item item-input">
           <span class="input-label"><strong>Valor a receber</strong></span>
-          <input type="number" ng-model="attendance.receiveValue" disabled />
+          <span>{{attendance.receiveValue}}</span>
         </div>
 
         <div class="item item-input">
           <span class="input-label"><strong>Taxa da máquina</strong></span>
-          <input type="number" ng-model="attendance.machineTaxValue" disabled />
+          <span>{{attendance.machineTaxValue}}</span>
         </div>
 
         <div class="item item-input">
           <span class="input-label"><strong>Taxa da clínica</strong></span>
-          <input type="number" ng-model="attendance.clinicValue" disabled />
+          <span>{{attendance.clinicValue}}</span>
         </div>
 
-        <div class="item item-input">
+        <div class="item item-input" ng-show="attendance.expectedPaymentDate">
           <span class="input-label"><strong>Data de pagamento</strong></span>
           <span>{{attendance.expectedPaymentDate | date: 'dd/MM/yyyy' }}</span>
         </div>

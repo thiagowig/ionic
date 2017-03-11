@@ -70,9 +70,9 @@ angular.module('starter.services')
       }
 
         /**
-         * Calculate the tax
+         * Calculate the tax and payment date
          */
-      this.calculateTax = function (attendance, callback) {
+      this.calculateTaxesAndDates = function (attendance, callback) {
         var query = 'SELECT * FROM paymentMethodConfig WHERE idPaymentMethod = ?'
         var param = [attendance.idPaymentMethod]
 

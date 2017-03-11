@@ -53,6 +53,22 @@ MISC
 		paid
 		obs TEXT
 
+# Attendance
+CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER NOT NULL, patient TEXT NOT NULL, installments INTEGER NOT NULL, attendanceDate LONG NOT NULL, fullValue REAL NOT NULL, receiveValue REAL NOT NULL, machineTaxValue REAL NOT NULL, clinicValue REAL NOT NULL, paid INTEGER, obs TEXT, FOREIGN KEY(idPaymentMethod) REFERENCES paymentMethod(id))
+
+
+CREATE TABLE IF NOT EXISTS installment (id INTEGER PRIMARY KEY, idAttendance INTEGER NOT NULL, number INTEGER NOT NULL, value REAL NOT NULL, paid INTEGER, expectedPaymentDate LONG, paymentDate LONG, FOREIGN KEY(idAttendance) REFERENCES attendance(id)) 
+
+
+
+
+	
+# Installment
+CREATE TABLE IF NOT EXISTS installment (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER, patient TEXT, attendanceDate LONG, expectedPaymentDate LONG, paymentDate LONG, fullValue REAL NOT NULL, receiveValue REAL, machineTaxValue REAL, clinicValue REAL paid INTEGER, obs TEXT)
+
+
+
+
 - Theme
 	https://ionicthemes.com/product/sidemenu2-ionic-side-menu?utm_source=ionicmarket&utm_medium=referral&utm_campaign=sidemenu2
 	https://docs.google.com/document/d/1-OeNuC29y2wzoMGwPWqgxR6jfr_AK1sHxVc_q1sBIZQ/edit#heading=h.6i65x0cwku17
