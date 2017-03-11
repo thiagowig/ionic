@@ -22,12 +22,13 @@ angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'st
         StatusBar.styleDefault()
       }
 
-      db = $cordovaSQLite.openDB({ name: 'my.db', iosDatabaseLocation: 'default' })
+      db = $cordovaSQLite.openDB({ name: 'gac.db', iosDatabaseLocation: 'default' })
 
       db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS paymentMethod (id INTEGER PRIMARY KEY, name TEXT)')
         tx.executeSql('CREATE TABLE IF NOT EXISTS paymentMethodConfig (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER, clinicTax NUMBER, machineTax NUMBER, FOREIGN KEY(idPaymentMethod) REFERENCES paymentMethod(id)) ')
-        tx.executeSql('CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER, patient TEXT, attendanceDate LONG, expectedPaymentDate LONG, paymentDate LONG, fullValue REAL NOT NULL, receiveValue REAL, machineTaxValue REAL, clinicValue REAL paid INTEGER, obs TEXT)')
+        tx.executeSql('CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER NOT NULL, patient TEXT NOT NULL, installments INTEGER NOT NULL, attendanceDate LONG NOT NULL, fullValue REAL NOT NULL, receiveValue REAL NOT NULL, machineTaxValue REAL NOT NULL, clinicValue REAL NOT NULL, paid INTEGER, obs TEXT, FOREIGN KEY(idPaymentMethod) REFERENCES paymentMethod(id))')
+        tx.executeSql('CREATE TABLE IF NOT EXISTS installment (id INTEGER PRIMARY KEY, idAttendance INTEGER NOT NULL, number INTEGER NOT NULL, value REAL NOT NULL, paid INTEGER, expectedPaymentDate LONG, paymentDate LONG, FOREIGN KEY(idAttendance) REFERENCES attendance(id)) ')
         tx.executeSql('CREATE TABLE IF NOT EXISTS configuration (id INTEGER PRIMARY KEY, name patient TEXT, value TEXT)')
 
         tx.executeSql('SELECT * FROM paymentMethod', [], function (tx, res) {
@@ -73,7 +74,6 @@ angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'st
             }
           }
 
-          console.log('ROOT ' + JSON.stringify($rootScope.configuration))
         })
       }, function (error) {
         console.log('Ocorreu um erro ao criar o banco de dados: ' + error)
