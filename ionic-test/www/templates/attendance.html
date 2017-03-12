@@ -16,7 +16,7 @@
 
         <div class="item item-input item-select">
           <div class="input-label"><strong>Forma de pagamento </strong> <span style="color: red">*</span></div>
-          <select ng-change="calculateTaxesAndDates(attendance, paymentMethod)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
+          <select ng-change="changePaymentMethod(attendance, paymentMethod)" ng-options="paymentMethod.name for paymentMethod in paymentMethods track by paymentMethod.id"
             ng-model="paymentMethod" required>
           <option value=""></option>
         </select>
@@ -27,24 +27,46 @@
           <input type="number" ng-change="calculateTaxesAndDates(attendance, paymentMethod)" ng-model="attendance.installments" required>
         </div>
 
-        <div class="item item-input">
-          <span class="input-label"><strong>Valor a receber</strong></span>
-          <span>{{attendance.receiveValue}}</span>
-        </div>
+        <div>
+          <ion-item ng-click="toggleGroup()" ng-class="{active: isGroupShown()}">
+            <i class="icon" ng-class="isGroupShown() ? 'ion-minus' : 'ion-plus'"></i> <strong>Detalhes de pagamento</strong>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown()">
 
-        <div class="item item-input">
-          <span class="input-label"><strong>Taxa da máquina</strong></span>
-          <span>{{attendance.machineTaxValue}}</span>
-        </div>
+            <div class="item item-input">
+              <span class="input-label"><strong>Total a receber</strong></span>
+              <span>{{attendance.receiveValue}}</span>
+            </div>
 
-        <div class="item item-input">
-          <span class="input-label"><strong>Taxa da clínica</strong></span>
-          <span>{{attendance.clinicValue}}</span>
-        </div>
+            <div class="item item-input">
+              <span class="input-label"><strong>Taxa da máquina</strong></span>
+              <span>{{attendance.machineTaxValue}}</span>
+            </div>
 
-        <div class="item item-input" ng-show="attendance.expectedPaymentDate">
-          <span class="input-label"><strong>Data de pagamento</strong></span>
-          <span>{{attendance.expectedPaymentDate | date: 'dd/MM/yyyy' }}</span>
+            <div class="item item-input">
+              <span class="input-label"><strong>Taxa da clínica</strong></span>
+              <span>{{attendance.clinicValue}}</span>
+            </div>
+
+            <div ng-repeat="installment in attendance.installmentsList">
+
+              <div class="item item-input item-divider">
+                <span class="input-label"><strong>Parcela</strong></span>
+                <span>{{installment.number}}</span>
+              </div>
+
+              <div class="item item-input">
+                <span class="input-label"><strong>&nbsp; &nbsp; Valor</strong></span>
+                <span>{{installment.value}}</span>
+              </div>
+
+              <div class="item item-input">
+                <span class="input-label"><strong>&nbsp; &nbsp; Data de pagamento</strong></span>
+                <span>{{installment.expectedPaymentDate | date: 'dd/MM/yyyy' }}</span>
+              </div>
+
+            </div>
+          </ion-item>
         </div>
 
         <div class="item item-input">

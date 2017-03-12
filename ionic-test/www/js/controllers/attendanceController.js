@@ -1,6 +1,16 @@
 angular.module('starter.controllers')
 
   .controller('AttendanceController', function ($scope, PopupService, PaymentMethodService, AttendanceService, $stateParams) {
+
+    $scope.showPaymentDetails = false;
+
+    $scope.toggleGroup = function () {
+      $scope.showPaymentDetails = !$scope.showPaymentDetails;
+    };
+    $scope.isGroupShown = function () {
+      return $scope.showPaymentDetails;
+    };
+
     var findPaymenMethods = function () {
       PaymentMethodService.findAll(function (result) {
         $scope.paymentMethods = result
@@ -19,8 +29,15 @@ angular.module('starter.controllers')
       })
     }
 
+    var mustCalculateTaxesAndDates = function (attendance, paymentMethod) {
+      var mustCalculate = attendance && attendance.fullValue && paymentMethod
+        && ((paymentMethod.id === 3 && attendance.installments) || paymentMethod.id != 3)
+
+      return mustCalculate
+    }
+
     $scope.calculateTaxesAndDates = function (attendance, paymentMethod) {
-      if (attendance && attendance.fullValue && paymentMethod) {
+      if (mustCalculateTaxesAndDates(attendance, paymentMethod)) {
         attendance.idPaymentMethod = paymentMethod.id
 
         AttendanceService.calculateTaxesAndDates(attendance, function (err) {
@@ -32,8 +49,13 @@ angular.module('starter.controllers')
         attendance.receiveValue = null
         attendance.machineTaxValue = null
         attendance.clinicValue = null
-        attendance.expectedPaymentDate = null
+        attendance.installmentsList = null
       }
+    }
+
+    $scope.changePaymentMethod = function(attendance, paymentMethod) {
+      delete attendance.installments
+      $scope.calculateTaxesAndDates(attendance, paymentMethod)
     }
 
     findPaymenMethods()

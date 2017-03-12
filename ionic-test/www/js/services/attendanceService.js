@@ -69,6 +69,14 @@ angular.module('starter.services')
         })
       }
 
+      var createInstallment = function(number, value, expectedPaymentDate) {
+        return {
+          number: number,
+          value: value,
+          expectedPaymentDate: expectedPaymentDate
+        }
+      }
+
         /**
          * Calculate the tax and payment date
          */
@@ -82,8 +90,20 @@ angular.module('starter.services')
           attendance.machineTaxValue = roundValue((attendance.fullValue * paymentMethodConfig.machineTax) / 100)
           attendance.clinicValue = roundValue(((attendance.fullValue - attendance.machineTaxValue) * paymentMethodConfig.clinicTax) / 100)
           attendance.receiveValue = roundValue(attendance.fullValue - attendance.machineTaxValue - attendance.clinicValue)
+          attendance.installmentsList = []
 
-          attendance.expectedPaymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod)
+          if (!attendance.installments) {
+            var paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod)
+            attendance.installmentsList.push(createInstallment(1, attendance.receiveValue, paymentDate))
+          } else {
+            for (var installment = 1; installment <= attendance.installments; installment++) {
+              var paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod, installment)
+              var installmentValue = roundValue(attendance.receiveValue / attendance.installments)
+              attendance.installmentsList.push(createInstallment(installment, installmentValue, paymentDate))
+            }
+          }
+ 
+          attendance.expectedPaymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod, attendance.installments)[0]
           if (attendance.expectedPaymentDate) {
             attendance.expectedPaymentDate = attendance.expectedPaymentDate.getTime()
           }
