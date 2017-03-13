@@ -21,33 +21,19 @@ angular.module('starter.services')
         if (result.rowsAffected === 1) {
           if (!attendance.id) {
             attendance.id = result.insertId
+            insertInstallments()
+
           } else {
-            // remove all installments
+            query = 'DELETE FROM installment WHERE idAttendance = ? '
+            params = [attendance.id]
+
+            $cordovaSQLite.execute(db, query, params).then(function (result) {
+              insertInstallments()
+
+            }, function (err) {
+              callback(err)
+            })
           }
-
-          query = 'INSERT INTO installment (idAttendance, number, value, expectedPaymentDate) VALUES '
-          params = []
-
-          attendance.installmentsList.forEach(function (installment) {
-            query += ' (?, ?, ?, ?),'
-            params.push(attendance.id)
-            params.push(installment.number)
-            params.push(installment.value)
-            params.push(installment.expectedPaymentDate)
-          });
-
-          query = query.substring(0, query.length - 1)
-
-          $cordovaSQLite.execute(db, query, params).then(function (result) {
-            if (result.rowsAffected === attendance.installments) {
-              callback(null, result)
-            } else {
-              callback('Quantidade incorreta de linhas alteradas: ' + result.rowsAffected)
-            }
-
-          }, function (err) {
-            callback(err)
-          })
 
         } else {
           callback('Quantidade incorreta de linhas alteradas: ' + result.rowsAffected)
@@ -55,6 +41,32 @@ angular.module('starter.services')
       }, function (err) {
         callback(err)
       })
+
+      var insertInstallments = function () {
+        query = 'INSERT INTO installment (idAttendance, number, value, expectedPaymentDate) VALUES '
+        params = []
+
+        attendance.installmentsList.forEach(function (installment) {
+          query += ' (?, ?, ?, ?),'
+          params.push(attendance.id)
+          params.push(installment.number)
+          params.push(installment.value)
+          params.push(installment.expectedPaymentDate)
+        });
+
+        query = query.substring(0, query.length - 1)
+
+        $cordovaSQLite.execute(db, query, params).then(function (result) {
+          if (result.rowsAffected === attendance.installments) {
+            callback(null, result)
+          } else {
+            callback('Quantidade incorreta de linhas alteradas: ' + result.rowsAffected)
+          }
+
+        }, function (err) {
+          callback(err)
+        })
+      }
     }
 
     /**
