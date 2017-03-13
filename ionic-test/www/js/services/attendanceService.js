@@ -88,7 +88,21 @@ angular.module('starter.services')
 
       $cordovaSQLite.execute(db, query, param).then(function (result) {
         var attendance = result.rows.item(0)
-        callback(null, attendance)
+        attendance.installmentsList = []
+
+        query = 'SELECT * FROM installment WHERE idAttendance = ? ORDER BY number'
+
+        $cordovaSQLite.execute(db, query, param).then(function (result) {
+          for (var i = 0; i < result.rows.length; i++) {
+            var installment = result.rows.item(i)
+            attendance.installmentsList.push(installment)
+          }
+
+          callback(null, attendance)
+
+        }, function (err) {
+          callback(err)
+        })
       }, function (err) {
         callback(err)
       })
@@ -120,6 +134,7 @@ angular.module('starter.services')
         if (!attendance.installments) {
           var paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod)
           attendance.installmentsList.push(createInstallment(1, attendance.receiveValue, paymentDate))
+          attendance.installments = 1
         } else {
           for (var installment = 1; installment <= attendance.installments; installment++) {
             var paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod, installment)
