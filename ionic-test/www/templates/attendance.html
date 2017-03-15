@@ -24,7 +24,7 @@
 
         <div class="item item-input" ng-show="paymentMethod.name === 'Credito'">
           <span class="input-label"><strong>Parcelas </strong> <span style="color: red">*</span></span>
-          <input type="number" ng-change="calculateTaxesAndDates(attendance, paymentMethod)" ng-model="attendance.installments" ng-required="paymentMethod.name === 'Credito'"">
+          <input type="number" ng-change="calculateTaxesAndDates(attendance, paymentMethod)" ng-model="attendance.installments" ng-required="paymentMethod.name === 'Credito'">
         </div>
 
         <div>
