@@ -9,6 +9,9 @@
 		- (Swipe) http://ionicframework.com/docs/api/directive/ionList/
 		- Clicar e segurar ou tres pontinhos para deletar;
 		- (Action Sheet) http://mcgivery.com/understanding-ionic-framework-action-sheet/
+	- Backup and restore
+		https://github.com/an-rahulpandey/cordova-plugin-dbcopy
+		https://gist.github.com/coderdiaz/e6c2821ee51e742ae531
 
 - To receive feature
 - Payment feature
@@ -54,10 +57,30 @@ MISC
 		obs TEXT
 
 # Attendance
-CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, idPaymentMethod INTEGER NOT NULL, patient TEXT NOT NULL, installments INTEGER NOT NULL, attendanceDate LONG NOT NULL, fullValue REAL NOT NULL, receiveValue REAL NOT NULL, machineTaxValue REAL NOT NULL, clinicValue REAL NOT NULL, paid INTEGER, obs TEXT, FOREIGN KEY(idPaymentMethod) REFERENCES paymentMethod(id))
+CREATE TABLE IF NOT EXISTS attendance (
+	id INTEGER PRIMARY KEY, 
+	idPaymentMethod INTEGER NOT NULL, 
+	patient TEXT NOT NULL, 
+	installments INTEGER NOT NULL, 
+	attendanceDate LONG NOT NULL, 
+	fullValue REAL NOT NULL, 
+	receiveValue REAL NOT NULL, 
+	machineTaxValue REAL NOT NULL, 
+	clinicValue REAL NOT NULL, 
+	paid INTEGER, 
+	obs TEXT, 
+	FOREIGN KEY(idPaymentMethod) REFERENCES paymentMethod(id))
 
 
-CREATE TABLE IF NOT EXISTS installment (id INTEGER PRIMARY KEY, idAttendance INTEGER NOT NULL, number INTEGER NOT NULL, value REAL NOT NULL, paid INTEGER, expectedPaymentDate LONG, paymentDate LONG, FOREIGN KEY(idAttendance) REFERENCES attendance(id)) 
+CREATE TABLE IF NOT EXISTS installment (
+	id INTEGER PRIMARY KEY, 
+	idAttendance INTEGER NOT NULL, 
+	number INTEGER NOT NULL, 
+	value REAL NOT NULL, 
+	paid INTEGER, 
+	expectedPaymentDate LONG, 
+	paymentDate LONG, 
+	FOREIGN KEY(idAttendance) REFERENCES attendance(id)) 
 
 
 
