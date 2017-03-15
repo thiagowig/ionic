@@ -9,14 +9,14 @@ angular.module('starter.controllers')
         } else {
           $scope.attendances = result
           $scope.noMoreItemsAvailable = false;
-          $scope.numberOfItemsToDisplay = 1;
+          $scope.numberOfItemsToDisplay = 10;
         }
       })
     }
 
     $scope.loadMore = function () {
       if ($scope.attendances && ($scope.attendances.length > $scope.numberOfItemsToDisplay)) {
-        $scope.numberOfItemsToDisplay += 1;
+        $scope.numberOfItemsToDisplay += 10;
       } else {
         $scope.noMoreItemsAvailable = true
       }

@@ -6,6 +6,7 @@ angular.module('starter.services')
       if (!installment) {
         var paymentDayOfWeek = parseInt($rootScope.configuration.paymentDayOfWeek)
         var paymentDate = new Date()
+        paymentDate.setDate(paymentDate.getDate() + 7);
         paymentDate.setDate(paymentDate.getDate() + (paymentDayOfWeek + (7 - paymentDate.getDay())) % 7)
 
         return paymentDate.getTime()

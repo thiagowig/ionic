@@ -1,9 +1,7 @@
 
 - Attendance
-	- Camel case
-	- (Pagination) http://stackoverflow.com/questions/32255155/pagination-in-ionic
-	- Show and hide values fields.
-	- Adicionar parcelamento
+	- Create TAX SERVICE
+	- Camel case	
 	- Datetime component
 	- Delete attendance	
 		- (Swipe) http://ionicframework.com/docs/api/directive/ionList/
@@ -20,6 +18,10 @@
 	- Cache paymentMethod ($rootScope)
 	- Separete routes.js
 
+	
+[OK] - (Pagination) http://stackoverflow.com/questions/32255155/pagination-in-ionic
+[OK] - Show and hide values fields.
+[OK] - Adicionar parcelamento
 
 [OK] - Próxima data de pagamento e formatada.
 [OK]~Pegar valor da config
