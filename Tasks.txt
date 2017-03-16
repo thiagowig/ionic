@@ -6,19 +6,19 @@
 	- Delete attendance	
 		- (Swipe) http://ionicframework.com/docs/api/directive/ionList/
 		- Clicar e segurar ou tres pontinhos para deletar;
-		- (Action Sheet) http://mcgivery.com/understanding-ionic-framework-action-sheet/
-	- Backup and restore
-		https://github.com/an-rahulpandey/cordova-plugin-dbcopy
-		https://gist.github.com/coderdiaz/e6c2821ee51e742ae531
+		- (Action Sheet) http://mcgivery.com/understanding-ionic-framework-action-sheet/	
 
 - To receive feature
 - Payment feature
 - Dashboard feature
 - General
 	- Cache paymentMethod ($rootScope)
-	- Separete routes.js
-
 	
+
+[NOK] - Backup and restore
+[NOK] 	https://github.com/an-rahulpandey/cordova-plugin-dbcopy
+[NOK] https://gist.github.com/coderdiaz/e6c2821ee51e742ae531
+[OK] - Separete routes.js
 [OK] - (Pagination) http://stackoverflow.com/questions/32255155/pagination-in-ionic
 [OK] - Show and hide values fields.
 [OK] - Adicionar parcelamento
