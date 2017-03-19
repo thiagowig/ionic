@@ -1,15 +1,14 @@
 angular.module('starter.controllers')
 
   .controller('AttendanceController', function ($scope, PopupService, PaymentMethodService, AttendanceService, $stateParams) {
-
-    $scope.showPaymentDetails = false;
+    $scope.showPaymentDetails = false
 
     $scope.toggleGroup = function () {
-      $scope.showPaymentDetails = !$scope.showPaymentDetails;
-    };
+      $scope.showPaymentDetails = !$scope.showPaymentDetails
+    }
     $scope.isGroupShown = function () {
-      return $scope.showPaymentDetails;
-    };
+      return $scope.showPaymentDetails
+    }
 
     var findPaymenMethods = function () {
       PaymentMethodService.findAll(function (result) {
@@ -30,8 +29,8 @@ angular.module('starter.controllers')
     }
 
     var mustCalculateTaxesAndDates = function (attendance, paymentMethod) {
-      var mustCalculate = attendance && attendance.fullValue && paymentMethod
-        && ((paymentMethod.id === 3 && attendance.installments) || paymentMethod.id != 3)
+      var mustCalculate = attendance && attendance.fullValue && paymentMethod &&
+        ((paymentMethod.id === 3 && attendance.installments) || paymentMethod.id !== 3)
 
       return mustCalculate
     }
@@ -53,7 +52,7 @@ angular.module('starter.controllers')
       }
     }
 
-    $scope.changePaymentMethod = function(attendance, paymentMethod) {
+    $scope.changePaymentMethod = function (attendance, paymentMethod) {
       delete attendance.installments
       $scope.calculateTaxesAndDates(attendance, paymentMethod)
     }

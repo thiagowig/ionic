@@ -1,27 +1,26 @@
 angular.module('starter.controllers')
 
   .controller('AttendanceListController', function ($scope, PopupService, PaymentMethodService, AttendanceService) {
-
     var findAttendances = function () {
       AttendanceService.findAll(function (err, result) {
         if (err) {
           PopupService.error('Ocorreu um erro ao buscar os atendimentos: ' + err)
         } else {
           $scope.attendances = result
-          $scope.noMoreItemsAvailable = false;
-          $scope.numberOfItemsToDisplay = 10;
+          $scope.noMoreItemsAvailable = false
+          $scope.numberOfItemsToDisplay = 10
         }
       })
     }
 
     $scope.loadMore = function () {
       if ($scope.attendances && ($scope.attendances.length > $scope.numberOfItemsToDisplay)) {
-        $scope.numberOfItemsToDisplay += 10;
+        $scope.numberOfItemsToDisplay += 10
       } else {
         $scope.noMoreItemsAvailable = true
       }
 
-      $scope.$broadcast('scroll.infiniteScrollComplete');
+      $scope.$broadcast('scroll.infiniteScrollComplete')
     }
 
     $scope.formatDate = function (dateTime) {

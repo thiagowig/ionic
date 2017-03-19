@@ -73,7 +73,6 @@ angular.module('starter', ['ionic', 'ion-fab-button', 'starter.controllers', 'st
               $rootScope.configuration[configuration.name] = configuration.value
             }
           }
-
         })
       }, function (error) {
         console.log('Ocorreu um erro ao criar o banco de dados: ' + error)

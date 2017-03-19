@@ -22,19 +22,16 @@ angular.module('starter.services')
           if (!attendance.id) {
             attendance.id = result.insertId
             insertInstallments()
-
           } else {
             query = 'DELETE FROM installment WHERE idAttendance = ? '
             params = [attendance.id]
 
             $cordovaSQLite.execute(db, query, params).then(function (result) {
               insertInstallments()
-
             }, function (err) {
               callback(err)
             })
           }
-
         } else {
           callback('Quantidade incorreta de linhas alteradas: ' + result.rowsAffected)
         }
@@ -52,7 +49,7 @@ angular.module('starter.services')
           params.push(installment.number)
           params.push(installment.value)
           params.push(installment.expectedPaymentDate)
-        });
+        })
 
         query = query.substring(0, query.length - 1)
 
@@ -62,7 +59,6 @@ angular.module('starter.services')
           } else {
             callback('Quantidade incorreta de linhas alteradas: ' + result.rowsAffected)
           }
-
         }, function (err) {
           callback(err)
         })
@@ -111,7 +107,6 @@ angular.module('starter.services')
           }
 
           callback(null, attendance)
-
         }, function (err) {
           callback(err)
         })
@@ -137,6 +132,7 @@ angular.module('starter.services')
 
       $cordovaSQLite.execute(db, query, param).then(function (result) {
         var paymentMethodConfig = result.rows.item(0)
+        var paymentDate
 
         attendance.machineTaxValue = roundValue((attendance.fullValue * paymentMethodConfig.machineTax) / 100)
         attendance.clinicValue = roundValue(((attendance.fullValue - attendance.machineTaxValue) * paymentMethodConfig.clinicTax) / 100)
@@ -144,12 +140,12 @@ angular.module('starter.services')
         attendance.installmentsList = []
 
         if (!attendance.installments) {
-          var paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod)
+          paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod)
           attendance.installmentsList.push(createInstallment(1, attendance.receiveValue, paymentDate))
           attendance.installments = 1
         } else {
           for (var installment = 1; installment <= attendance.installments; installment++) {
-            var paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod, installment)
+            paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod, installment)
             var installmentValue = roundValue(attendance.receiveValue / attendance.installments)
             attendance.installmentsList.push(createInstallment(installment, installmentValue, paymentDate))
           }
@@ -167,6 +163,6 @@ angular.module('starter.services')
     }
   })
 
-function roundValue(value) {
+function roundValue (value) {
   return Math.round(value * 100) / 100
 }
