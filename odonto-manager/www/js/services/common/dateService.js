@@ -6,7 +6,7 @@ angular.module('starter.services')
       var paymentDate = new Date()
 
       if (!installment) {
-        paymentDate.setDate(paymentDate.getDate() + 7)
+        paymentDate.setDate(paymentDate.getDate() + 1)
         paymentDate.setDate(paymentDate.getDate() + (paymentDayOfWeek + (7 - paymentDate.getDay())) % 7)
 
         return paymentDate.getTime()
