@@ -1,3 +1,5 @@
+var karma = require('karma').server;
+
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var gulpStandard = require('gulp-standard');
@@ -58,4 +60,13 @@ gulp.task("standard", function () {
       breakOnError: true,
       quiet: true
     }))
+});
+
+gulp.task('test', function(done) {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, function() {
+        done();
+    });
 });

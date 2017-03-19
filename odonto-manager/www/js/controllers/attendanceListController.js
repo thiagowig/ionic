@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
 
   .controller('AttendanceListController', function ($scope, PopupService, PaymentMethodService, AttendanceService) {
+    var numberOfItemsToDisplay = 10
+
     var findAttendances = function () {
       AttendanceService.findAll(function (err, result) {
         if (err) {
@@ -8,14 +10,14 @@ angular.module('starter.controllers')
         } else {
           $scope.attendances = result
           $scope.noMoreItemsAvailable = false
-          $scope.numberOfItemsToDisplay = 10
+          $scope.numberOfItemsToDisplay = numberOfItemsToDisplay
         }
       })
     }
 
     $scope.loadMore = function () {
       if ($scope.attendances && ($scope.attendances.length > $scope.numberOfItemsToDisplay)) {
-        $scope.numberOfItemsToDisplay += 10
+        $scope.numberOfItemsToDisplay += numberOfItemsToDisplay
       } else {
         $scope.noMoreItemsAvailable = true
       }
