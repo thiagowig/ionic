@@ -4,5 +4,6 @@
 node_modules/
 platforms/
 plugins/
-resources/
+resources/android/
+resources/ios/
 npm-debug.log
