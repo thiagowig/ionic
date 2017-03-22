@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-  .service('DateService', function ($rootScope, $ionicPopup, ConfigService) {
+  .service('DateService', function ($rootScope, ConfigService) {
     this.calculateExpectedPaymentDate = function (idPaymentMethod, installment) {
       var paymentDayOfWeek = parseInt($rootScope.configuration.paymentDayOfWeek)
       var paymentDate = new Date()
