@@ -140,20 +140,15 @@ angular.module('starter.services')
         attendance.installmentsList = []
 
         if (!attendance.installments) {
-          paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod)
+          paymentDate = DateService.calculateExpectedPaymentDate()
           attendance.installmentsList.push(createInstallment(1, attendance.receiveValue, paymentDate))
           attendance.installments = 1
         } else {
           for (var installment = 1; installment <= attendance.installments; installment++) {
-            paymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod, installment)
+            paymentDate = DateService.calculateExpectedPaymentDate(installment)
             var installmentValue = roundValue(attendance.receiveValue / attendance.installments)
             attendance.installmentsList.push(createInstallment(installment, installmentValue, paymentDate))
           }
-        }
-
-        attendance.expectedPaymentDate = DateService.calculateExpectedPaymentDate(attendance.idPaymentMethod, attendance.installments)[0]
-        if (attendance.expectedPaymentDate) {
-          attendance.expectedPaymentDate = attendance.expectedPaymentDate.getTime()
         }
 
         callback(null)

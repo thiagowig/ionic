@@ -1,7 +1,7 @@
 angular.module('starter.services')
 
-  .service('DateService', function ($rootScope, ConfigService) {
-    this.calculateExpectedPaymentDate = function (idPaymentMethod, installment) {
+  .service('DateService', function ($rootScope) {
+    this.calculateExpectedPaymentDate = function (installment) {
       var paymentDayOfWeek = parseInt($rootScope.configuration.paymentDayOfWeek)
       var paymentDate = new Date()
 
