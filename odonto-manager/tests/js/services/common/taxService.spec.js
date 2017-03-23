@@ -14,7 +14,7 @@ describe('taxService.spec.js', function () {
         },
         paymentMethodConfig: {
           machineTax: 0,
-          clinicValue: 55
+          clinicTax: 55
         },
         expected: {
           fullValue: 1000,
@@ -26,13 +26,12 @@ describe('taxService.spec.js', function () {
     ]
 
     useCases.forEach(function(useCase) {
-      var attendance = useCase.attendance
-      TaxService.calculateInstallmentValue(attendance)
+      TaxService.calculateRates(useCase.attendance, useCase.paymentMethodConfig)
 
-      expect(attendance.fullValue).toBe(useCase.expected.fullValue)
-      expect(attendance.machineTaxValue).toBe(useCase.expected.machineTaxValue)
-      expect(attendance.clinicValue).toBe(useCase.expected.clinicValue)
-      expect(attendance.receiveValue).toBe(useCase.expected.receiveValue)
+      expect(useCase.attendance.fullValue).toBe(useCase.expected.fullValue)
+      expect(useCase.attendance.machineTaxValue).toBe(useCase.expected.machineTaxValue)
+      expect(useCase.attendance.clinicValue).toBe(useCase.expected.clinicValue)
+      expect(useCase.attendance.receiveValue).toBe(useCase.expected.receiveValue)
     })
   }));
 
