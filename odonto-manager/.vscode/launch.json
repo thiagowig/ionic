@@ -13,6 +13,28 @@
             "sourceMaps": true,
             "outDir": "${workspaceRoot}/out",
             "preLaunchTask": "npm"
+        },
+        {
+            "name": "Launch gulp",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
+            "stopOnEntry": false,
+            "args": [
+                "unittests"
+            ],
+            "cwd": "${workspaceRoot}/src/",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "externalConsole": false,
+            "sourceMaps": false,
+            "outDir": null
         }
     ]
 }

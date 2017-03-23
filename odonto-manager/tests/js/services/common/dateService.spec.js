@@ -204,7 +204,6 @@ describe('dateService.spec.js', function () {
         var resultTimestamp = DateService.calculateExpectedPaymentDate(installment)
         var resultDate = new Date(resultTimestamp)
 
-        console.log('########## ' + resultDate)
         expect(resultDate.getFullYear()).toBe(expectedDate.year);
         expect(resultDate.getMonth()).toBe(expectedDate.month);
         expect(resultDate.getDate()).toBe(expectedDate.day);

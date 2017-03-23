@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-  .service('AttendanceService', function ($cordovaSQLite, PopupService, DateService) {
+  .service('AttendanceService', function ($cordovaSQLite, PopupService, DateService, TaxService) {
     /**
      * Save the attendance
      */
@@ -134,19 +134,20 @@ angular.module('starter.services')
         var paymentMethodConfig = result.rows.item(0)
         var paymentDate
 
-        attendance.machineTaxValue = roundValue((attendance.fullValue * paymentMethodConfig.machineTax) / 100)
-        attendance.clinicValue = roundValue(((attendance.fullValue - attendance.machineTaxValue) * paymentMethodConfig.clinicTax) / 100)
-        attendance.receiveValue = roundValue(attendance.fullValue - attendance.machineTaxValue - attendance.clinicValue)
+        attendance = TaxService.calculateRates(attendance, paymentMethodConfig)
         attendance.installmentsList = []
 
         if (!attendance.installments) {
           paymentDate = DateService.calculateExpectedPaymentDate()
           attendance.installmentsList.push(createInstallment(1, attendance.receiveValue, paymentDate))
           attendance.installments = 1
+
         } else {
+          var installmentValue = TaxService.calculateInstallmentValue(attendance)
+
           for (var installment = 1; installment <= attendance.installments; installment++) {
             paymentDate = DateService.calculateExpectedPaymentDate(installment)
-            var installmentValue = roundValue(attendance.receiveValue / attendance.installments)
+            
             attendance.installmentsList.push(createInstallment(installment, installmentValue, paymentDate))
           }
         }
@@ -157,7 +158,3 @@ angular.module('starter.services')
       })
     }
   })
-
-function roundValue (value) {
-  return Math.round(value * 100) / 100
-}
