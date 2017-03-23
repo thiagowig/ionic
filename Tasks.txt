@@ -13,6 +13,11 @@
 - Dashboard feature
 - General
 	- Cache paymentMethod ($rootScope)
+- SLide:
+	https://ionicframework.com/docs/v2/api/components/slides/Slides/
+	http://ionicframework.com/docs/api/directive/ionSlides/
+	http://ionicframework.com/docs/api/directive/ionSlideBox/
+	http://docs.usecreator.com/docs/slider
 	
 
 [NOK] - Backup and restore
