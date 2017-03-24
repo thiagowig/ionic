@@ -93,11 +93,85 @@ describe('taxService.spec.js', function () {
         },
         expected: {
           fullValue: 437,
-          machineTaxValue: 0,
-          clinicValue: 240.35,
-          receiveValue: 196.65,
+          machineTaxValue: 8.74,
+          clinicValue: 235.54,
+          receiveValue: 192.72,
         }
       },
+      {
+        attendance: {
+          fullValue: 123.45
+        },
+        paymentMethodConfig: {
+          machineTax: 2,
+          clinicTax: 55
+        },
+        expected: {
+          fullValue: 123.45,
+          machineTaxValue: 2.47,
+          clinicValue: 66.54,
+          receiveValue: 54.44,
+        }
+      }
+    ]
+
+    useCases.forEach(function (useCase) {
+      TaxService.calculateRates(useCase.attendance, useCase.paymentMethodConfig)
+
+      expect(useCase.attendance.fullValue).toBe(useCase.expected.fullValue)
+      expect(useCase.attendance.machineTaxValue).toBe(useCase.expected.machineTaxValue)
+      expect(useCase.attendance.clinicValue).toBe(useCase.expected.clinicValue)
+      expect(useCase.attendance.receiveValue).toBe(useCase.expected.receiveValue)
+    })
+  }));
+
+  it('must calculate rates for credit payment', inject(function (TaxService) {
+    var useCases = [
+      {
+        attendance: {
+          fullValue: 1000
+        },
+        paymentMethodConfig: {
+          machineTax: 4.5,
+          clinicTax: 55
+        },
+        expected: {
+          fullValue: 1000,
+          machineTaxValue: 45,
+          clinicValue: 525.25,
+          receiveValue: 429.75,
+        }
+      },
+      {
+        attendance: {
+          fullValue: 437
+        },
+        paymentMethodConfig: {
+          machineTax: 4.5,
+          clinicTax: 55
+        },
+        expected: {
+          fullValue: 437,
+          machineTaxValue: 19.67,
+          clinicValue: 229.53,
+          receiveValue: 187.80,
+        }
+      },
+      {
+        attendance: {
+          fullValue: 123.45
+        },
+        paymentMethodConfig: {
+          machineTax: 4.5,
+          clinicTax: 55
+        },
+        expected: {
+          fullValue: 123.45,
+          machineTaxValue: 5.56,
+          clinicValue: 64.84,
+          receiveValue: 53.05,
+        }
+      }
     ]
 
     useCases.forEach(function (useCase) {
