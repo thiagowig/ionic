@@ -51,7 +51,8 @@
       "www/img/",
       "www/lib/",
       "www/templates/",
-      "gulpfile.js"
+      "gulpfile.js",
+      "tests/"
     ]
   }
 }

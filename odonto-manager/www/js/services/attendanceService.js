@@ -141,13 +141,12 @@ angular.module('starter.services')
           paymentDate = DateService.calculateExpectedPaymentDate()
           attendance.installmentsList.push(createInstallment(1, attendance.receiveValue, paymentDate))
           attendance.installments = 1
-
         } else {
           var installmentValue = TaxService.calculateInstallmentValue(attendance)
 
           for (var installment = 1; installment <= attendance.installments; installment++) {
             paymentDate = DateService.calculateExpectedPaymentDate(installment)
-            
+
             attendance.installmentsList.push(createInstallment(installment, installmentValue, paymentDate))
           }
         }

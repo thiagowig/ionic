@@ -2,11 +2,9 @@
  * The tests for TaxService.
  */
 describe('taxService.spec.js', function () {
-
-  beforeEach(module('starter.services'));
+  beforeEach(module('starter.services'))
 
   it('must calculate rates for money payment', inject(function (TaxService) {
-
     var useCases = [
       {
         attendance: {
@@ -20,7 +18,7 @@ describe('taxService.spec.js', function () {
           fullValue: 1000,
           machineTaxValue: 0,
           clinicValue: 550,
-          receiveValue: 450,
+          receiveValue: 450
         }
       },
       {
@@ -35,7 +33,7 @@ describe('taxService.spec.js', function () {
           fullValue: 437,
           machineTaxValue: 0,
           clinicValue: 240.35,
-          receiveValue: 196.65,
+          receiveValue: 196.65
         }
       },
       {
@@ -50,7 +48,7 @@ describe('taxService.spec.js', function () {
           fullValue: 123.45,
           machineTaxValue: 0,
           clinicValue: 67.90,
-          receiveValue: 55.55,
+          receiveValue: 55.55
         }
       }
     ]
@@ -63,10 +61,9 @@ describe('taxService.spec.js', function () {
       expect(useCase.attendance.clinicValue).toBe(useCase.expected.clinicValue)
       expect(useCase.attendance.receiveValue).toBe(useCase.expected.receiveValue)
     })
-  }));
+  }))
 
   it('must calculate rates for debt payment', inject(function (TaxService) {
-
     var useCases = [
       {
         attendance: {
@@ -80,7 +77,7 @@ describe('taxService.spec.js', function () {
           fullValue: 1000,
           machineTaxValue: 20,
           clinicValue: 539,
-          receiveValue: 441,
+          receiveValue: 441
         }
       },
       {
@@ -95,7 +92,7 @@ describe('taxService.spec.js', function () {
           fullValue: 437,
           machineTaxValue: 8.74,
           clinicValue: 235.54,
-          receiveValue: 192.72,
+          receiveValue: 192.72
         }
       },
       {
@@ -110,7 +107,7 @@ describe('taxService.spec.js', function () {
           fullValue: 123.45,
           machineTaxValue: 2.47,
           clinicValue: 66.54,
-          receiveValue: 54.44,
+          receiveValue: 54.44
         }
       }
     ]
@@ -123,7 +120,7 @@ describe('taxService.spec.js', function () {
       expect(useCase.attendance.clinicValue).toBe(useCase.expected.clinicValue)
       expect(useCase.attendance.receiveValue).toBe(useCase.expected.receiveValue)
     })
-  }));
+  }))
 
   it('must calculate rates for credit payment', inject(function (TaxService) {
     var useCases = [
@@ -139,7 +136,7 @@ describe('taxService.spec.js', function () {
           fullValue: 1000,
           machineTaxValue: 45,
           clinicValue: 525.25,
-          receiveValue: 429.75,
+          receiveValue: 429.75
         }
       },
       {
@@ -154,7 +151,7 @@ describe('taxService.spec.js', function () {
           fullValue: 437,
           machineTaxValue: 19.67,
           clinicValue: 229.53,
-          receiveValue: 187.80,
+          receiveValue: 187.80
         }
       },
       {
@@ -169,7 +166,7 @@ describe('taxService.spec.js', function () {
           fullValue: 123.45,
           machineTaxValue: 5.56,
           clinicValue: 64.84,
-          receiveValue: 53.05,
+          receiveValue: 53.05
         }
       }
     ]
@@ -182,21 +179,18 @@ describe('taxService.spec.js', function () {
       expect(useCase.attendance.clinicValue).toBe(useCase.expected.clinicValue)
       expect(useCase.attendance.receiveValue).toBe(useCase.expected.receiveValue)
     })
-  }));
+  }))
 
   it('must calculate installment value', inject(function (TaxService) {
-
     var useCases = [
       { receiveValue: 100, installments: 3, expected: 33.33 },
       { receiveValue: 1000, installments: 4, expected: 250 },
       { receiveValue: 150, installments: 8, expected: 18.75 },
-      { receiveValue: 47.55, installments: 3, expected: 15.85 },
+      { receiveValue: 47.55, installments: 3, expected: 15.85 }
     ]
 
     useCases.forEach(function (attendance) {
       expect(TaxService.calculateInstallmentValue(attendance)).toBe(attendance.expected)
     })
-  }));
-
-
+  }))
 })
