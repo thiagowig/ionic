@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="br.com.ithiago.gac" version="0.0.1" android-versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>GAC</name>
+<widget id="br.com.ithiago.odontomanager" version="0.0.1" android-versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Odonto Manager</name>
   <description>Gerencie suas consultas, taxas da clínica, valores a receber e muito mais</description>
   <author email="dev.thiago@gmail.com" href="http://ithiago.com.br/">Thiago Fonseca</author>
   <content src="index.html"/>
