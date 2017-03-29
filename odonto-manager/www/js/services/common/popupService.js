@@ -12,7 +12,7 @@ angular.module('starter.services')
       showMessage('red', 'Erro', message)
     }
 
-    this.sucess = function (message) {
+    this.success = function (message) {
       showMessage('green', 'Sucesso', message)
     }
 

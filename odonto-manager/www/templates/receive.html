@@ -1,11 +1,25 @@
 <ion-view view-title="A receber">
   <ion-content>
 
-    <ul class="list">
-      <li class="item" ng-repeat="installment in installmentsToReceive">
-      {{installment.expectedPaymentDate | date: 'dd/MM/yyyy' + ' - R$ ' + installment.total}}
-      </li>
-    </ul>
+    <div class="list card">
+      <div class="item item-divider">
+        Total a receber
+      </div>
+      <ion-item>
+        {{"R$ " + totalToReceive.totalValue}}
+      </ion-item>
+    </div>
+
+    <div class="list card" ng-repeat="installment in installmentsToReceive">
+      <a href="#app/payment/{{installment.expectedPaymentDate}}" class="subdued">
+        <div class="item item-divider">
+          {{installment.expectedPaymentDate | date: 'dd/MM/yyyy'}}
+        </div>
+        <ion-item>
+          {{"R$ " + installment.total + " - Parcelas: " + installment.totalCount}}
+        </ion-item>
+      </a>
+    </div>
 
   </ion-content>
 </ion-view>

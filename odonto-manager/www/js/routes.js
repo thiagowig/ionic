@@ -42,7 +42,7 @@ angular.module('starter.routes')
       })
 
       .state('app.payment', {
-        url: '/payment',
+        url: '/payment/{expectedPaymentDate}',
         views: {
           'menuContent': {
             templateUrl: 'templates/payment.html',
@@ -71,6 +71,6 @@ angular.module('starter.routes')
       })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/payment')
+    $urlRouterProvider.otherwise('/app/help')
   })
 
