@@ -32,6 +32,7 @@ angular.module('starter.routes')
 
       .state('app.receive', {
         url: '/receive',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/receive.html',

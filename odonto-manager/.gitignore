@@ -6,4 +6,4 @@ platforms/
 plugins/
 resources/android/
 resources/ios/
-npm-debug.log
+*.log

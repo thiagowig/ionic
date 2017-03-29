@@ -1,5 +1,11 @@
 <ion-view view-title="A receber">
   <ion-content>
-    <h1>Valor</h1>
+
+    <ul class="list">
+      <li class="item" ng-repeat="installment in installmentsToReceive">
+      {{installment.expectedPaymentDate | date: 'dd/MM/yyyy' + ' - R$ ' + installment.total}}
+      </li>
+    </ul>
+
   </ion-content>
 </ion-view>
