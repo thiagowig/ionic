@@ -1,11 +1,22 @@
 <ion-view view-title="Pagamento">
   <ion-content>
 
-      <ion-checkbox ng-model="checkAll" ng-click="checkAllListener(checkAll)">Marcar todos</ion-checkbox>
-      
-      <ion-item ng-repeat="installment in installments">
+    <span><strong>Dia: </strong>{{expectedPaymentDate | date: 'dd/MM/yyyy'}}</span>
+
+    <ion-checkbox ng-model="checkAll" ng-click="checkAllListener(checkAll)">Marcar todos</ion-checkbox>
+
+    <div class="card" ng-repeat="installment in installments">
+      <div class="item item-divider">
+        Thiago Fonseca
+      </div>
+      <ion-item>
         <ion-checkbox ng-model="installment.checked">{{"R$ " + installment.value}}</ion-checkbox>
       </ion-item>
+    </div>
+
+    <div class="item">
+      <button class="button button-block button-positive" ng-click="payInstallments()" ng-disabled="isSaved">Salvar</button>
+    </div>
 
   </ion-content>
 </ion-view>

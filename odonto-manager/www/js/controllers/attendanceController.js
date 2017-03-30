@@ -23,7 +23,7 @@ angular.module('starter.controllers')
         if (err) {
           PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err)
         } else {
-          PopupService.sucess('Atendimento salvo com sucesso')
+          PopupService.success('Atendimento salvo com sucesso')
         }
       })
     }

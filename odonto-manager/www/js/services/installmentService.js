@@ -40,7 +40,7 @@ angular.module('starter.services')
          *  
          */
         this.findByExpectedPaymentDate = function (expectedPaymentDate, callback) {
-            var query = 'SELECT * FROM installment WHERE expectedPaymentDate = ? '
+            var query = 'SELECT * FROM installment WHERE expectedPaymentDate = ? AND (paid IS NULL OR paid <> 1)'
             var param = [expectedPaymentDate]
 
             $cordovaSQLite.execute(db, query, param).then(function (result) {
@@ -55,5 +55,32 @@ angular.module('starter.services')
             }, function (err) {
                 callback(err)
             })
+        }
+
+        /**
+         * Pay a installment
+         */
+        this.payInstallments = function (paidInstallmentsId, callback) {
+            var whereSize = getWhereSize(paidInstallmentsId)
+
+            var query = 'UPDATE installment SET paid = 1 WHERE id IN (' + whereSize + ') '
+            var param = paidInstallmentsId
+
+            $cordovaSQLite.execute(db, query, param).then(function (result) {
+                callback()
+
+            }, function (err) {
+                callback(err)
+            })
+        }
+
+        function getWhereSize(paidInstallmentsId) {
+            var where = '';
+
+            paidInstallmentsId.forEach(function (id) {
+                where += "?, "
+            });
+
+            return where.substr(0, where.length - 2)
         }
     })

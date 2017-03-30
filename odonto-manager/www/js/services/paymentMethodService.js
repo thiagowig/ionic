@@ -42,7 +42,7 @@ angular.module('starter.services')
         $cordovaSQLite.execute(db, query, params).then(function (result) {
           callback(result)
         }, function (error) {
-          PopupService.sucess('Ocorreu um erro ao atualizar a configuração: ' + error)
+          PopupService.success('Ocorreu um erro ao atualizar a configuração: ' + error)
         })
       }
     })

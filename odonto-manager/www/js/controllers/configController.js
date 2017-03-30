@@ -15,16 +15,16 @@ angular.module('starter.controllers')
 
     $scope.savePaymentMethodConfig = function (paymentMethodConfig) {
       PaymentMethodService.updateConfig(paymentMethodConfig, function (result) {
-        PopupService.sucess('As taxas foram salvas com sucesso')
+        PopupService.success('As taxas foram salvas com sucesso')
       })
     }
 
     $scope.saveConfiguration = function (configuration) {
       ConfigService.save('paymentDayOfWeek', configuration.paymentDayOfWeek, function (err) {
         if (err) {
-          PopupService.sucess('As configurações foram salvas com sucesso')
+          PopupService.success('As configurações foram salvas com sucesso')
         } else {
-          PopupService.sucess('As configurações foram salvas com sucesso')
+          PopupService.success('As configurações foram salvas com sucesso')
         }
       })
     }
