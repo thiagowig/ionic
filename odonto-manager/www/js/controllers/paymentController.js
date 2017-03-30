@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
 
   .controller('PaymentController', function ($scope, $stateParams, InstallmentService, PopupService) {
-
     var expectedPaymentDate = $stateParams.expectedPaymentDate
     $scope.expectedPaymentDate = expectedPaymentDate
 
@@ -16,7 +15,7 @@ angular.module('starter.controllers')
     $scope.checkAllListener = function (checkAll) {
       $scope.installments.forEach(function (installment) {
         installment.checked = checkAll
-      });
+      })
     }
 
     $scope.payInstallments = function () {
@@ -41,5 +40,4 @@ angular.module('starter.controllers')
         PopupService.error('Favor selecionar pelo menos 1 registro')
       }
     }
-
   })
