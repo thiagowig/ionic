@@ -1,25 +1,53 @@
 
-- Attendance
-	- Create TAX SERVICE
-	- Camel case	
-	- Datetime component
+1º Release (25/03)
+	[OK] - Attendance
+	
+2º Release (01/04)
+	[OK] - To receive
+	- Payment
+		Layout
+		Save
+		Bug cabuloso
+		Value format
+	- Change attendance list layout
+	
+3º Release (07/04) (GOOGLE PLAY RELEASE)
 	- Delete attendance	
 		- (Swipe) http://ionicframework.com/docs/api/directive/ionList/
 		- Clicar e segurar ou tres pontinhos para deletar;
 		- (Action Sheet) http://mcgivery.com/understanding-ionic-framework-action-sheet/	
-
-- To receive feature
-- Payment feature
-- Dashboard feature
-- General
-	- Cache paymentMethod ($rootScope)
-- SLide:
-	https://ionicframework.com/docs/v2/api/components/slides/Slides/
-	http://ionicframework.com/docs/api/directive/ionSlides/
-	http://ionicframework.com/docs/api/directive/ionSlideBox/
-	http://docs.usecreator.com/docs/slider
+	- Change config flow
+	- Alterar attendance paid	
+	- Slide at the beginning:
+		https://ionicframework.com/docs/v2/api/components/slides/Slides/
+		http://ionicframework.com/docs/api/directive/ionSlides/
+		http://ionicframework.com/docs/api/directive/ionSlideBox/
+		http://docs.usecreator.com/docs/slider
+	- Google play upload
+		
+4º Release (15/04)
+	- Dashboard feature
+	- Camel case	
+	- Change attendance date (Datetime component)
+	- Unit testing;
+		Promises
 	
+5º Release (20/04)
+	- Cache paymentMethod ($rootScope)
+	- I18N
+	- [Hard] Separate DDL concern;
+	- Separate DML concern;	
+	- Database migration
 
+
+
+
+
+
+
+	
+[OK] - Create TAX SERVICE
+[OK] - To receive feature
 [NOK] - Backup and restore
 [NOK] 	https://github.com/an-rahulpandey/cordova-plugin-dbcopy
 [NOK] https://gist.github.com/coderdiaz/e6c2821ee51e742ae531
@@ -40,12 +68,7 @@
 [OK] - FAB button
 
 
-MISC
 
-- I18N
-- [Hard] Separate DDL concern;
-- Separate DML concern;
-- Unit testing;
 [OK]- Standardjs
 [OK]- [OK] Passing parameters between views
 [OK]- [OK] Separate Popup concern;
