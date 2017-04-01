@@ -37,14 +37,17 @@ angular.module('starter.services')
          *
          */
       this.findByExpectedPaymentDate = function (expectedPaymentDate, callback) {
-        var query = 'SELECT * FROM installment WHERE expectedPaymentDate = ? AND (paid IS NULL OR paid <> 1)'
+        var query = 'SELECT installment.*, attendance.patient, attendance.installments, attendance.fullValue, attendance.machineTaxValue, attendance.idPaymentMethod, attendance.attendanceDate FROM installment installment INNER JOIN attendance attendance ON attendance.id = installment.idAttendance WHERE installment.expectedPaymentDate = ? AND (installment.paid IS NULL OR installment.paid <> 1)'
         var param = [expectedPaymentDate]
 
         $cordovaSQLite.execute(db, query, param).then(function (result) {
           var installments = []
 
           for (var i = 0; i < result.rows.length; i++) {
-            installments.push(result.rows.item(i))
+            var installment = result.rows.item(i)
+            installment.machineValue = (installment.fullValue - installment.machineTaxValue) / installment.installments
+
+            installments.push(installment)
           }
 
           callback(null, installments)

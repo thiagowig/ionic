@@ -2,7 +2,7 @@
   <ion-content>
 
     <div class="bar bar-header bar-light">
-      <h4 class="title"><span><strong>Dia: </strong></span> {{expectedPaymentDate | date: 'dd/MM/yyyy'}}</h4>
+      <h4 class="title"><span><strong>Pagamentos do dia: </strong></span> {{expectedPaymentDate | date: 'dd/MM/yyyy'}}</h4>
     </div>
 
     <br /><br />
@@ -16,11 +16,13 @@
     <ul class="list">
       <div class="card" ng-repeat="installment in installments">
         <div class="item item-divider">
-          Nome: Thiago Fonseca <br /> Data do atendimento: 12/01/2017
+          Paciente: {{installment.patient}} <br /> Data do atendimento: {{installment.attendanceDate | date: 'dd/MM/yyyy'}}
         </div>
         <ion-item>
           <li class="item item-toggle">
-            {{"R$ " + roundValue(installment.value)}}
+            {{"Valor a receber: R$ " + roundValue(installment.value)}} <br />
+            {{"Valor de máquina: R$ " + roundValue(installment.machineValue)}} <br />
+            {{"Número da parcela: " + installment.number}} <br />
             <label class="toggle toggle-positive">
               <input type="checkbox" ng-model="installment.checked">
               <div class="track">
