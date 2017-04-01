@@ -1,4 +1,4 @@
-<ion-view view-title="A receber">
+<ion-view view-title="À receber">
   <ion-content>
 
     <div class="list card">
@@ -6,7 +6,7 @@
         Total a receber
       </div>
       <ion-item>
-        {{"R$ " + totalToReceive.totalValue}}
+        {{"R$ " + roundValue(totalToReceive.totalValue)}}
       </ion-item>
     </div>
 
@@ -16,7 +16,7 @@
           {{installment.expectedPaymentDate | date: 'dd/MM/yyyy'}}
         </div>
         <ion-item>
-          {{"R$ " + installment.total + " - Parcelas: " + installment.totalCount}}
+          {{"Total a receber: R$ " + roundValue(installment.total) + " - Atendimentos: " + installment.totalCount}}
         </ion-item>
       </a>
     </div>

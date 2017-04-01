@@ -1,4 +1,4 @@
-<ion-view view-title="Pagamento">
+<ion-view view-title="Informar pagamento">
   <ion-content>
 
     <div class="bar bar-header bar-light">
@@ -20,7 +20,7 @@
         </div>
         <ion-item>
           <li class="item item-toggle">
-            {{"R$ " + installment.value}}
+            {{"R$ " + roundValue(installment.value)}}
             <label class="toggle toggle-positive">
               <input type="checkbox" ng-model="installment.checked">
               <div class="track">

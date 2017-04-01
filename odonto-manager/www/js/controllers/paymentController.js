@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-  .controller('PaymentController', function ($scope, $stateParams, InstallmentService, PopupService) {
+  .controller('PaymentController', function ($scope, $stateParams, InstallmentService, PopupService, TaxService) {
     var expectedPaymentDate = $stateParams.expectedPaymentDate
     $scope.expectedPaymentDate = expectedPaymentDate
 
@@ -40,4 +40,9 @@ angular.module('starter.controllers')
         PopupService.error('Favor selecionar pelo menos 1 registro')
       }
     }
+
+    $scope.roundValue = function(value) {
+      return TaxService.roundValue(value)
+    }
+
   })
