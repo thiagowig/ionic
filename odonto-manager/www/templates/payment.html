@@ -2,58 +2,10 @@
   <ion-content>
 
     <div class="bar bar-header bar-light">
-      <h3 class="title"><span><strong>Dia: </strong></span> {{expectedPaymentDate | date: 'dd/MM/yyyy'}}</h3>
+      <h4 class="title"><span><strong>Dia: </strong></span> {{expectedPaymentDate | date: 'dd/MM/yyyy'}}</h4>
     </div>
 
     <br /><br />
-
-    <ul class="list">
-
-  <li class="item item-toggle">
-     HTML5
-     <label class="toggle toggle-assertive">
-       <input type="checkbox">
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-  </li>
-
-  <li class="item item-toggle">
-     JS
-     <label class="toggle toggle-assertive">
-       <input type="checkbox">
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-  </li>
-
-</ul>
-
-<div class="item item-button-right">
-    Call Ma
-    <button class="button button-positive">
-      <i class="icon ion-ios-telephone"></i>
-    </button>
-  </div>
-
-
-
-    <div class="list">
-
-      <a class="item item-thumbnail-left" href="#">
-        <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-        <h2>Pretty Hate Machine</h2>
-        <p>Nine Inch Nails</p>
-      </a>
-      <a class="item item-thumbnail-left" href="#">
-        <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-        <h2>Pretty Hate Machine</h2>
-        <p>Nine Inch Nails</p>
-      </a>
-
-    </div>
 
     <div class="card">
       <ion-item>
@@ -61,15 +13,24 @@
       </ion-item>
     </div>
 
-
-    <div class="card" ng-repeat="installment in installments">
-      <div class="item item-divider">
-        Nome: Thiago Fonseca <br /> Data do atendimento: 12/01/2017
+    <ul class="list">
+      <div class="card" ng-repeat="installment in installments">
+        <div class="item item-divider">
+          Nome: Thiago Fonseca <br /> Data do atendimento: 12/01/2017
+        </div>
+        <ion-item>
+          <li class="item item-toggle">
+            {{"R$ " + installment.value}}
+            <label class="toggle toggle-positive">
+              <input type="checkbox" ng-model="installment.checked">
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+            </label>
+          </li>
+        </ion-item>
       </div>
-      <ion-item>
-        <ion-checkbox ng-model="installment.checked">{{"R$ " + installment.value}}</ion-checkbox>
-      </ion-item>
-    </div>
+    </ul>
 
     <div class="item">
       <button class="button button-block button-positive" ng-click="payInstallments()" ng-disabled="isSaved">Salvar</button>
