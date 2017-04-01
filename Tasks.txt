@@ -8,11 +8,11 @@ http://ionicframework.com/docs/v1/guide/publishing.html
 	[OK] - To receive
 	- Payment
 		Layout
-		Save
-		Bug cabuloso
-		Value format
-	- Change attendance list layout
-	
+		Set paymentDate
+		[OK] Save
+		[OK] Bug cabuloso
+		[OK] Value format
+		
 3º Release (07/04) (GOOGLE PLAY RELEASE)
 	- Delete attendance	
 		- (Swipe) http://ionicframework.com/docs/api/directive/ionList/
