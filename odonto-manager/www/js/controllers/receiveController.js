@@ -9,14 +9,6 @@ angular.module('starter.controllers')
       }
     })
 
-    InstallmentService.getTotalToReceive(function (err, result) {
-      if (err) {
-        PopupService.error('Erro ao buscar o total: ' + err)
-      } else {
-        $scope.totalToReceive = result
-      }
-    })
-
     $scope.roundValue = function(value) {
       return TaxService.roundValue(value)
     }

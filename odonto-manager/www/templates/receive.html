@@ -1,15 +1,6 @@
 <ion-view view-title="À receber">
   <ion-content>
 
-    <div class="list card">
-      <div class="item item-divider">
-        Total a receber
-      </div>
-      <ion-item>
-        {{"R$ " + roundValue(totalToReceive.totalValue)}}
-      </ion-item>
-    </div>
-
     <div class="list card" ng-repeat="installment in installmentsToReceive">
       <a href="#app/payment/{{installment.expectedPaymentDate}}" class="subdued">
         <div class="item item-divider">

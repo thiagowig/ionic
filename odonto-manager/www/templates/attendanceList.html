@@ -2,7 +2,7 @@
   <ion-content>
 
     <div class="card">
-      <ion-item ng-repeat="attendance in attendances | limitTo:numberOfItemsToDisplay" on-hold="showConfirm()" href="#app/attendance/{{attendance.id}}">
+      <ion-item ng-repeat="attendance in attendances | limitTo:numberOfItemsToDisplay" href="#app/attendance/{{attendance.id}}">
         <div class="item-text-wrap item-icon-left">
           <i class="icon {{getIcon(attendance)}}" style="color: {{getIconCollor(attendance)}}"></i> {{attendance.patient
           + ' - R$ ' + attendance.fullValue + ' - ' + formatDate(attendance.attendanceDate)}}

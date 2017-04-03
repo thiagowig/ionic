@@ -24,7 +24,7 @@
             {{"Valor de máquina: R$ " + roundValue(installment.machineValue)}} <br />
             {{"Número da parcela: " + installment.number}} <br />
             <label class="toggle toggle-positive">
-              <input type="checkbox" ng-model="installment.checked">
+              <input type="checkbox" ng-model="installment.checked" ng-click="checkSingle(installment.checked, checkAll)">
               <div class="track">
                 <div class="handle"></div>
               </div>

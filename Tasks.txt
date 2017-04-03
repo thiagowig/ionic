@@ -8,7 +8,10 @@ http://ionicframework.com/docs/v1/guide/publishing.html
 	[OK] - To receive
 	- Payment
 		Layout
-		Set paymentDate
+		Krai de checkbox
+		[OK] Hide dashboard
+		[OK] Retirar delete 'on-hold="showConfirm()"'
+		[OK] Set paymentDate
 		[OK] Save
 		[OK] Bug cabuloso
 		[OK] Value format

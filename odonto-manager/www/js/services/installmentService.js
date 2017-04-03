@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-    .service('InstallmentService', function ($cordovaSQLite) {
+    .service('InstallmentService', function ($cordovaSQLite, DateService) {
         /**
          *
          */
@@ -61,12 +61,19 @@ angular.module('starter.services')
          */
       this.payInstallments = function (paidInstallmentsId, callback) {
         var whereSize = getWhereSize(paidInstallmentsId)
+        var paymentDate = DateService.getCurrentDate()
 
-        var query = 'UPDATE installment SET paid = 1 WHERE id IN (' + whereSize + ') '
-        var param = paidInstallmentsId
+        var query = 'UPDATE installment SET paid = 1, paymentDate = ? WHERE id IN (' + whereSize + ') '
+        var param = [paymentDate] 
+        param = param.concat(paidInstallmentsId)
 
         $cordovaSQLite.execute(db, query, param).then(function (result) {
-          callback()
+          if (paidInstallmentsId.length != result.rowsAffected) {
+            callback('rowsAffected: ' + result.rowsAffected)
+          } else {
+            callback()
+          }
+
         }, function (err) {
           callback(err)
         })

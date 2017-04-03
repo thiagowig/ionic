@@ -18,6 +18,13 @@ angular.module('starter.controllers')
       })
     }
 
+    $scope.checkSingle = function(checked, checkAll) {
+      if (!checked) {
+        checkAll = false
+        $scope.checkAll = false
+      }
+    }
+
     $scope.payInstallments = function () {
       var paidInstallmentsId = $scope.installments
         .filter(function (installment) {
