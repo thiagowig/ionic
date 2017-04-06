@@ -18,10 +18,19 @@ angular.module('starter.controllers')
       })
     }
 
-    $scope.checkSingle = function(checked, checkAll) {
+    $scope.model = {checkAll: false}
+
+    $scope.checkSingle = function(checked) {
       if (!checked) {
-        checkAll = false
-        $scope.checkAll = false
+        $scope.model.checkAll = false
+      } else {
+        var allInstallmentsChecked = $scope.installments.every(function(installment) {
+          return installment.checked
+        })
+
+        if (allInstallmentsChecked) {
+          $scope.model.checkAll = true
+        }
       }
     }
 

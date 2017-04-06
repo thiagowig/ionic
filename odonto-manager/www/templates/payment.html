@@ -7,9 +7,9 @@
 
     <br /><br />
 
-    <div class="card">
-      <ion-item>
-        <ion-checkbox ng-model="checkAll" ng-click="checkAllListener(checkAll)">Marcar todos</ion-checkbox>
+    <div class="card no-padding no-margin">
+      <ion-item class="no-padding no-margin">
+        <ion-checkbox ng-model="model.checkAll" ng-click="checkAllListener(model.checkAll)">Marcar todos</ion-checkbox>
       </ion-item>
     </div>
 
@@ -18,13 +18,13 @@
         <div class="item item-divider">
           Paciente: {{installment.patient}} <br /> Data do atendimento: {{installment.attendanceDate | date: 'dd/MM/yyyy'}}
         </div>
-        <ion-item>
+        <ion-item class="no-padding">
           <li class="item item-toggle">
-            {{"Valor a receber: R$ " + roundValue(installment.value)}} <br />
-            {{"Valor de máquina: R$ " + roundValue(installment.machineValue)}} <br />
-            {{"Número da parcela: " + installment.number}} <br />
+            {{"A receber: R$ " + roundValue(installment.value)}} <br />
+            {{"Máquina: R$ " + roundValue(installment.machineValue)}} <br />
+            {{"Parcela: " + installment.number}} <br />
             <label class="toggle toggle-positive">
-              <input type="checkbox" ng-model="installment.checked" ng-click="checkSingle(installment.checked, checkAll)">
+              <input type="checkbox" ng-model="installment.checked" ng-click="checkSingle(installment.checked)">
               <div class="track">
                 <div class="handle"></div>
               </div>

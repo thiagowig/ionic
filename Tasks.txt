@@ -7,14 +7,19 @@ http://ionicframework.com/docs/v1/guide/publishing.html
 2º Release (01/04)
 	[OK] - To receive
 	- Payment
-		Layout
-		Krai de checkbox
+		Somar totais selecionados
+		Mudar ícones, splash e logo
+		TESTS
+			Definir cenários
+			Porva
+		[OK] Layout		
 		[OK] Hide dashboard
 		[OK] Retirar delete 'on-hold="showConfirm()"'
 		[OK] Set paymentDate
 		[OK] Save
 		[OK] Bug cabuloso
 		[OK] Value format
+		[OK] Krai de checkbox		
 		
 3º Release (07/04) (GOOGLE PLAY RELEASE)
 	- Delete attendance	

@@ -9838,3 +9838,11 @@ a.button {
 .item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.no-margin {
+  margin-bottom: 0px !important;
+}

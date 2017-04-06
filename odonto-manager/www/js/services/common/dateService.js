@@ -19,7 +19,7 @@ angular.module('starter.services')
      */
     this.calculateExpectedPaymentDate = function (installment) {
       var paymentDayOfWeek = parseInt($rootScope.configuration.paymentDayOfWeek)
-      var paymentDate = getCurrentDate()
+      var paymentDate = currentDate()
 
       if (!installment) {
         paymentDate.setDate(paymentDate.getDate() + 1)
