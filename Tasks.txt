@@ -7,8 +7,9 @@ http://ionicframework.com/docs/v1/guide/publishing.html
 2º Release (01/04)
 	[OK] - To receive
 	- Payment
-		Somar totais selecionados
 		Mudar ícones, splash e logo
+		Somar totais selecionados
+		Bugs do wunderlist
 		TESTS
 			Definir cenários
 			Porva
