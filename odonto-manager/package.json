@@ -1,6 +1,6 @@
 {
   "name": "odonto-manager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Odonto Manager: Gerenciador de atendimento clínico",
   "dependencies": {
     "gulp": "^3.5.6",
