@@ -16,16 +16,28 @@ angular.module('starter.controllers')
       })
     }
 
+    var isValidAttendance = function (attendance) {
+      if (attendance.installments != undefined && (attendance.installments <= 0 || attendance.installments > 30)) {
+        PopupService.error('A quantidade de parcelas deve ser entre 1 e 30')
+
+        return false
+      }
+
+      return true
+    }
+
     $scope.save = function (attendance, paymentMethod) {
       attendance.idPaymentMethod = paymentMethod.id
 
-      AttendanceService.save(attendance, function (err, result) {
-        if (err) {
-          PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err)
-        } else {
-          PopupService.success('Atendimento salvo com sucesso')
-        }
-      })
+      if (isValidAttendance(attendance)) {
+        AttendanceService.save(attendance, function (err, result) {
+          if (err) {
+            PopupService.error('Ocorreu um erro ao salvar o atendimento: ' + err)
+          } else {
+            PopupService.success('Atendimento salvo com sucesso')
+          }
+        })
+      }
     }
 
     var mustCalculateTaxesAndDates = function (attendance, paymentMethod) {
@@ -53,7 +65,10 @@ angular.module('starter.controllers')
     }
 
     $scope.changePaymentMethod = function (attendance, paymentMethod) {
-      delete attendance.installments
+      if (attendance && attendance.installments) {
+        delete attendance.installments
+      }
+
       $scope.calculateTaxesAndDates(attendance, paymentMethod)
     }
 
