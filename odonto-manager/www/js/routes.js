@@ -70,7 +70,16 @@ angular.module('starter.routes')
         }
       })
 
+      .state('app.intro', {
+        url: '/intro',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/intro.html'
+          }
+        }
+      })
+
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/help')
+    $urlRouterProvider.otherwise('/app/intro')
   })
 

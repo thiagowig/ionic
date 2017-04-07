@@ -9846,3 +9846,11 @@ a.button {
 .no-margin {
   margin-bottom: 0px !important;
 }
+
+
+.v-align {
+  height: 100% !important;
+  display: block !important;
+  vertical-align: middle !important;
+}
+
