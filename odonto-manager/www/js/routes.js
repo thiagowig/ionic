@@ -65,7 +65,8 @@ angular.module('starter.routes')
         url: '/help',
         views: {
           'menuContent': {
-            templateUrl: 'templates/help.html'
+            templateUrl: 'templates/help.html',
+            controller: 'HelpController'
           }
         }
       })
