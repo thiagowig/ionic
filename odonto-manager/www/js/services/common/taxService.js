@@ -25,4 +25,3 @@ angular.module('starter.services')
       return roundValue(attendance.receiveValue / attendance.installments)
     }
   })
-

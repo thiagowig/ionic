@@ -66,7 +66,7 @@ angular.module('starter.services')
     }
 
     /**
-     * List all attendances
+     * List all attendances.
      */
     this.findAll = function (callback) {
       var query = 'SELECT * FROM attendance ORDER BY attendanceDate DESC'
