@@ -64,16 +64,15 @@ angular.module('starter.services')
         var paymentDate = DateService.getCurrentDate()
 
         var query = 'UPDATE installment SET paid = 1, paymentDate = ? WHERE id IN (' + whereSize + ') '
-        var param = [paymentDate] 
+        var param = [paymentDate]
         param = param.concat(paidInstallmentsId)
 
         $cordovaSQLite.execute(db, query, param).then(function (result) {
-          if (paidInstallmentsId.length != result.rowsAffected) {
+          if (paidInstallmentsId.length !== result.rowsAffected) {
             callback('rowsAffected: ' + result.rowsAffected)
           } else {
             callback()
           }
-
         }, function (err) {
           callback(err)
         })

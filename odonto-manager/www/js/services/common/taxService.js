@@ -1,13 +1,12 @@
 angular.module('starter.services')
 
   .service('TaxService', function () {
-
-    var roundValue = function(value) {
+    var roundValue = function (value) {
       return Math.round(value * 100) / 100
     }
 
-    this.roundValue = roundValue;
-    
+    this.roundValue = roundValue
+
     /**
      *
      */

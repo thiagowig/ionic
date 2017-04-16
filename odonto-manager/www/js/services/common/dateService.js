@@ -1,8 +1,7 @@
 angular.module('starter.services')
 
   .service('DateService', function ($rootScope) {
-
-    var currentDate = function getCurrentDate() {
+    var currentDate = function getCurrentDate () {
       var currentDate = new Date()
       currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())
 
@@ -10,12 +9,12 @@ angular.module('starter.services')
     }
 
     /**
-     * 
+     *
      */
     this.getCurrentDate = currentDate
 
     /**
-     * 
+     *
      */
     this.calculateExpectedPaymentDate = function (installment) {
       var paymentDayOfWeek = parseInt($rootScope.configuration.paymentDayOfWeek)
@@ -32,6 +31,4 @@ angular.module('starter.services')
         return paymentDate.setDate(paymentDate.getDate() + (paymentDayOfWeek + (7 - paymentDate.getDay())) % 7)
       }
     }
-
-    
   })

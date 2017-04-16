@@ -9,7 +9,7 @@ angular.module('starter.controllers')
       }
     })
 
-    $scope.roundValue = function(value) {
+    $scope.roundValue = function (value) {
       return TaxService.roundValue(value)
     }
   })

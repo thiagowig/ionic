@@ -17,7 +17,7 @@ angular.module('starter.controllers')
     }
 
     var isValidAttendance = function (attendance) {
-      if (attendance.installments != undefined && (attendance.installments <= 0 || attendance.installments > 30)) {
+      if (attendance.installments !== undefined && (attendance.installments <= 0 || attendance.installments > 30)) {
         PopupService.error('A quantidade de parcelas deve ser entre 1 e 30')
 
         return false

@@ -20,11 +20,11 @@ angular.module('starter.controllers')
 
     $scope.model = {checkAll: false}
 
-    $scope.checkSingle = function(checked) {
+    $scope.checkSingle = function (checked) {
       if (!checked) {
         $scope.model.checkAll = false
       } else {
-        var allInstallmentsChecked = $scope.installments.every(function(installment) {
+        var allInstallmentsChecked = $scope.installments.every(function (installment) {
           return installment.checked
         })
 
@@ -57,8 +57,7 @@ angular.module('starter.controllers')
       }
     }
 
-    $scope.roundValue = function(value) {
+    $scope.roundValue = function (value) {
       return TaxService.roundValue(value)
     }
-
   })
