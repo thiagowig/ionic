@@ -1,21 +1,44 @@
 angular.module('starter.controllers')
 
-  .controller('HelpController', function ($cordovaEmailComposer) {
-    $cordovaEmailComposer.isAvailable().then(function () {
-      console.log('Is available')
-    }, function () {
-      console.log('Sorry, but it is not available')
-    })
+  .controller('HelpController', function ($cordovaFile, PopupService) {
 
-    var email = {
-      to: ['dev.thiago@gmail.com'],
-      subject: 'Cordova Icons',
-      body: 'How are you? Nice greetings from Leipzig',
-      isHtml: true
-    }
+    console.log(cordova.file.dataDirector)
 
-    $cordovaEmailComposer.open(email).then(null, function () {
-      // user cancelled email
-      console.log('// user cancelled email')
-    })
+    $cordovaFile.writeFile(cordova.file.dataDirectory, 'myTestFile.txt', 'Thiago Fonseca', true)
+      .then(function(result) {
+        PopupService.success('Sucesso ao salvar arquivo')
+        console.log(JSON.stringify(result))
+      }, function(err) {
+        PopupService.erro('Erro ao salvar arquivo')
+        console.log(JSON.stringify(err))
+      })
+
+    $cordovaFile.writeFile(cordova.file.cacheDirectory, 'myTestFile.txt', 'Thiago Fonseca', true)
+      .then(function(result) {
+        PopupService.success('Sucesso ao salvar arquivo')
+        console.log(JSON.stringify(result))
+      }, function(err) {
+        PopupService.erro('Erro ao salvar arquivo')
+        console.log(JSON.stringify(err))
+      })
+
+    $cordovaFile.writeFile(cordova.file.applicationStorageDirectory, 'myTestFile.txt', 'Thiago Fonseca', true)
+      .then(function(result) {
+        PopupService.success('Sucesso ao salvar arquivo')
+        console.log(JSON.stringify(result))
+      }, function(err) {
+        PopupService.erro('Erro ao salvar arquivo')
+        console.log(JSON.stringify(err))
+      })
+
+    $cordovaFile.writeFile(cordova.file.applicationDirectory, 'myTestFile.txt', 'Thiago Fonseca', true)
+      .then(function(result) {
+        PopupService.success('Sucesso ao salvar arquivo')
+        console.log(JSON.stringify(result))
+      }, function(err) {
+        PopupService.erro('Erro ao salvar arquivo')
+        console.log(JSON.stringify(err))
+      })
+
+
   })

@@ -10,3 +10,4 @@ resources/ios/
 *.keystore
 *.apk
 coverage/
+.history/
