@@ -100,7 +100,7 @@ angular.module('starter.services')
       })
     }
 
-    function getWhereSize(paidInstallmentsId) {
+    function getWhereSize (paidInstallmentsId) {
       var where = ''
 
       paidInstallmentsId.forEach(function (id) {

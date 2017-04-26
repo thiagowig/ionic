@@ -35,7 +35,7 @@ angular.module('starter.services')
     }
 
     /**
-     * 
+     *
      */
     this.generateBackup = function (callback) {
       InstallmentService.generateBackup(function (err, result) {
@@ -57,5 +57,4 @@ angular.module('starter.services')
         }
       })
     }
-
   })

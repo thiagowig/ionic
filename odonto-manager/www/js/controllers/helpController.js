@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
 
   .controller('HelpController', function ($cordovaFile, PopupService) {
-
     $cordovaFile.writeFile(cordova.file.externalDataDirectory, 'myTestFile.txt', 'Thiago Fonseca is REALLY awesome', true)
       .then(function (result) {
         PopupService.success('Sucesso ao salvar arquivo')
@@ -10,5 +9,4 @@ angular.module('starter.controllers')
         PopupService.erro('Erro ao salvar arquivo')
         console.log(JSON.stringify(err))
       })
-
   })

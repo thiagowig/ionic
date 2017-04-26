@@ -29,8 +29,8 @@ angular.module('starter.controllers')
       })
     }
 
-    $scope.generateBackup = function() {
-      ConfigService.generateBackup(function(err, dir) {
+    $scope.generateBackup = function () {
+      ConfigService.generateBackup(function (err, dir) {
         if (err) {
           PopupService.error('Erro ao gerar o backup:' + JSON.stringify(err))
         } else {
