@@ -22,9 +22,19 @@ angular.module('starter.controllers')
     $scope.saveConfiguration = function (configuration) {
       ConfigService.save('paymentDayOfWeek', configuration.paymentDayOfWeek, function (err) {
         if (err) {
-          PopupService.success('As configurações foram salvas com sucesso')
+          PopupService.error('Erro ao salvar as configurações:' + JSON.stringify(err))
         } else {
           PopupService.success('As configurações foram salvas com sucesso')
+        }
+      })
+    }
+
+    $scope.generateBackup = function() {
+      ConfigService.generateBackup(function(err, dir) {
+        if (err) {
+          PopupService.error('Erro ao gerar o backup:' + JSON.stringify(err))
+        } else {
+          PopupService.success('Backup salvo com sucesso no diretório: ' + dir)
         }
       })
     }
