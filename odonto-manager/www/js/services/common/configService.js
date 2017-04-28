@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-  .service('ConfigService', function ($cordovaSQLite, InstallmentService, $cordovaFile) {
+  .service('ConfigService', function ($cordovaSQLite, InstallmentService, $cordovaFile, DateService) {
     /**
      * Find config by name
      */
@@ -34,6 +34,16 @@ angular.module('starter.services')
       })
     }
 
+    function getPaymentMethodName(idPaymentMethod) {
+      if (idPaymentMethod === 1) {
+        return 'Dinheiro'
+      } else if (idPaymentMethod === 2) {
+        return 'Debito'
+      } else {
+        return 'Credito'
+      }
+    }
+
     /**
      *
      */
@@ -42,10 +52,18 @@ angular.module('starter.services')
         if (err) {
           callback(err)
         } else {
-          var backup = 'Paciente,Valor a receber\n'
+          var backup = 'Data de pagamento,Paciente,Total do atendimento,Data do atendimento,Forma de pagamento,Parcela,Valor a receber, Valor esquisito,Observaçoes\n'
 
           result.forEach(function (installment) {
-            backup += installment.patient + ',' + installment.value + '\n'
+            backup += DateService.formatDate(installment.expectedPaymentDate) + ','
+            backup += installment.patient + ','
+            backup += installment.fullValue + ','
+            backup += DateService.formatDate(installment.attendanceDate) + ','
+            backup += getPaymentMethodName(installment.idPaymentMethod) + ','
+            backup += installment.number + '/' + installment.installments +  ','
+            backup += installment.value + ','
+            backup += installment.machineValue + ','            
+            backup += installment.obs + '\n'
           })
 
           $cordovaFile.writeFile(cordova.file.externalDataDirectory, 'backup.csv', backup, true)

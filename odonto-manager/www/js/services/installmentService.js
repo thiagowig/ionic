@@ -60,7 +60,7 @@ angular.module('starter.services')
      *
      */
     this.generateBackup = function (callback) {
-      var query = 'SELECT installment.*, attendance.patient, attendance.installments, attendance.fullValue, attendance.machineTaxValue, attendance.idPaymentMethod, attendance.attendanceDate FROM installment installment INNER JOIN attendance attendance ON attendance.id = installment.idAttendance WHERE (installment.paid IS NULL OR installment.paid <> 1) ORDER BY expectedPaymentDate'
+      var query = 'SELECT installment.*, attendance.patient, attendance.installments, attendance.fullValue, attendance.machineTaxValue, attendance.idPaymentMethod, attendance.attendanceDate, attendance.obs FROM installment installment INNER JOIN attendance attendance ON attendance.id = installment.idAttendance WHERE (installment.paid IS NULL OR installment.paid <> 1) ORDER BY expectedPaymentDate'
 
       $cordovaSQLite.execute(db, query, []).then(function (result) {
         var installments = []
