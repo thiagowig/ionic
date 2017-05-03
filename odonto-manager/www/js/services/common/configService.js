@@ -68,7 +68,8 @@ angular.module('starter.services')
 
           $cordovaFile.writeFile(cordova.file.externalDataDirectory, 'backup.csv', backup, true)
             .then(function (result) {
-              callback(null, cordova.file.externalDataDirectory)
+              var dir = cordova.file.externalDataDirectory.substr(cordova.file.externalDataDirectory.indexOf('/Android/'))
+              callback(null, dir)
             }, function (err) {
               callback(err)
             })
