@@ -52,7 +52,7 @@ angular.module('starter.services')
         if (err) {
           callback(err)
         } else {
-          var backup = 'Data de pagamento,Paciente,Total do atendimento,Data do atendimento,Forma de pagamento,Parcela,Valor a receber, Valor esquisito,Observaçoes\n'
+          var backup = 'Data de pagamento,Paciente,Total do atendimento,Data do atendimento,Forma de pagamento,Parcela,Valor a receber, Valor esquisito,Observacoes\n'
 
           result.forEach(function (installment) {
             backup += DateService.formatDate(installment.expectedPaymentDate) + ','
