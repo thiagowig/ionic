@@ -1,5 +1,5 @@
 
- http://ionicframework.com/docs/v1/guide/publishing.html
+http://ionicframework.com/docs/v1/guide/publishing.html
 
 1º Release (25/03)
 	[OK] - Attendance
